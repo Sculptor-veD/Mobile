@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".ManHinhNhom">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" >
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhóm"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+
+        <ImageButton
+            android:layout_gravity="right"
+            android:id="@+id/imgchonvi"
+            android:background="@drawable/custom_mauxanhgiongtoolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/wallet_mauxanh"></ImageButton>
+        <TextView
+            android:layout_marginRight="12dp"
+            android:layout_gravity="right"
+            android:id="@+id/txtNameWl"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"/>
+        />
+</androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:text="Danh sách tất cả các nhóm"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+
+
+    <ListView
+        android:layout_marginTop="15dp"
+        android:id="@+id/lvKhoanChi"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"></ListView>
+
+    <ImageView
+        android:id="@+id/imgAdd"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/icon_plus" />
+
+</LinearLayout>

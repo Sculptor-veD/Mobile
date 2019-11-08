@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ducku.com.moneyhappy">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Money Manager"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ManHinhHienThiChiTietVi"></activity>
+        <activity android:name=".ManHinhThemVi"></activity>
+        <activity android:name=".ManHinhHienThiVi" />
+        <activity android:name=".ManHinhLoadNhomCha1" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".ManHinhSuaCategory" />
+        <activity android:name=".ManHinhHienThiGiaoDich" />
+        <activity android:name=".ManHinhLoadNhomCha" />
+        <activity android:name=".ManHinhHienThiChiTietNhom">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity android:name=".ManHinhChonViDeTaoNhom" />
+        <activity android:name=".ManHinhTaoNhom" />
+        <activity android:name=".ManHinhVi" />
+        <activity android:name=".ManHinhNhom">
+
+        </activity>
+        <activity android:name=".ManHinhThuChi" />
+        <activity android:name=".LoadWalletActivity" />
+        <activity android:name=".LoadCategoryActivity" />
+        <activity android:name=".ManHinhLoadIcon">
+
+        </activity>
+        <activity android:name=".ManHinhGiaoDich" />
+        <activity android:name=".ManHinhTaoVi"></activity>
+        <activity android:name=".ManHinhDangKy" />
+        <activity android:name=".ManHinhDangNhap" />
+        <activity android:name=".api" />
+        <activity android:name=".MainActivity" />
+    </application>
+
+</manifest>
