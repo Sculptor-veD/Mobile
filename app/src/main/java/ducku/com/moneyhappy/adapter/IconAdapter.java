@@ -1,50 +1,38 @@
 package ducku.com.moneyhappy.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
-public class IconAdapter extends BaseAdapter {
-    private Context mContext;
-    private Integer []mThumbIds;
-    public IconAdapter(Context c){
-        mContext=c;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.List;
+
+import ducku.com.moneyhappy.R;
+
+public class IconAdapter extends ArrayAdapter<Integer> {
+    Activity context; int resource; @NonNull List<Integer> objects;
+    public IconAdapter(@NonNull Activity context, int resource, @NonNull List<Integer> objects) {
+        super(context, resource, objects);
+
+        this.context=context;
+        this.resource=resource;
+        this.objects=objects;
     }
-    public IconAdapter(Context c,Integer []arrIds){
-        mContext=c;
-        mThumbIds=arrIds;
-    }
-    public int getCount()
-    {
-        return mThumbIds.length;
-    }
-    public Object getItem(int arg0)
-    {
-        return null;
-    }
-    public long getItemId(int arg0)
-    {
-        return 0;
-    }
-    /**
-     * Cần override lại hàm này để hiển thị hình ảnh
-     */
-    public View getView(int arg0, View convertView, ViewGroup arg2) {
-        ImageView imgView;
-        if(convertView==null){
-            imgView=new ImageView(mContext);
-            imgView.setLayoutParams(new GridView.LayoutParams(185, 185));
-            imgView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imgView.setPadding(8, 8, 8, 8);
-        }else{
-            imgView=(ImageView) convertView;
-        }
-        //lấy đúng vị trí hình ảnh được chọn
-        //gán lại ImageResource
-        imgView.setImageResource(mThumbIds[arg0]);
-        return imgView;
+
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        LayoutInflater layoutInflater=this.context.getLayoutInflater();
+        View row=layoutInflater.inflate(resource,null);
+        ImageView imgicon=row.findViewById(R.id.imgicon);
+
+        imgicon.setImageResource(objects.get(position));
+        return row;
     }
 }

@@ -1,5 +1,6 @@
 package ducku.com.moneyhappy;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -11,13 +12,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 
 public class ManHinhTaoNhom extends AppCompatActivity {
 
     int type;
     RadioButton radthu,radchi;
-    ImageView imgVi, imgNhomCha;
+    ImageView imgVi, imgNhomCha,imghinhh;
     EditText editVi,editNhomCha;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +93,21 @@ public class ManHinhTaoNhom extends AppCompatActivity {
             }
         });
 
+        imghinhh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ManHinhTaoNhom.this, ManHinhLoadIcon.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
     }
 
     private void addControls() {
         radthu=findViewById(R.id.radthu);
         radchi=findViewById(R.id.radchi);
 
+        imghinhh=findViewById(R.id.imghinhh);
         imgVi=findViewById(R.id.imgvi);
         editVi=findViewById(R.id.editvi);
         imgNhomCha=findViewById(R.id.imgNhomCha);
@@ -134,5 +145,22 @@ public class ManHinhTaoNhom extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                int hinh=data.getIntExtra("id_hinh",-1);
+                imghinhh.setImageResource(hinh);
+            }
+            else
+            {
+                Toast.makeText(ManHinhTaoNhom.this,"Lấy hình thất bại",Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

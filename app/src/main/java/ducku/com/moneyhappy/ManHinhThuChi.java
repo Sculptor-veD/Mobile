@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
@@ -50,6 +52,18 @@ public class ManHinhThuChi extends AppCompatActivity {
                 else {
                     new GetCategory().execute("act=getcategory&iduser=1&type=0");
                 }
+            }
+        });
+
+        lvCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent();
+                intent.putExtra("id_category",arrayCategory.get(position).get_id());
+                intent.putExtra("image_category",arrayCategory.get(position).get_img());
+                intent.putExtra("name_category",arrayCategory.get(position).get_name());
+                setResult(RESULT_OK,intent);
+                finish();
             }
         });
     }

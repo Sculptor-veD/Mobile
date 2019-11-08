@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class ManHinhSuaCategory extends AppCompatActivity {
     LinearLayout linear;
@@ -96,6 +97,14 @@ public class ManHinhSuaCategory extends AppCompatActivity {
                 startActivityForResult(intent,1);
             }
         });
+
+        imghinhh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(ManHinhSuaCategory.this, ManHinhLoadIcon.class);
+                startActivityForResult(intent,2);
+            }
+        });
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
@@ -137,7 +146,21 @@ public class ManHinhSuaCategory extends AppCompatActivity {
                 editNhomCha.setText("Có thể chọn nhóm cha hoặc không");
             }
         }
+
+        if(requestCode==2)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                int hinh=data.getIntExtra("id_hinh",-1);
+                imghinhh.setImageResource(hinh);
+            }
+            else
+            {
+                Toast.makeText(ManHinhSuaCategory.this,"Lấy hình thất bại",Toast.LENGTH_LONG).show();
+            }
+        }
     }
+
 }
 
 

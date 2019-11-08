@@ -1,10 +1,12 @@
 package ducku.com.moneyhappy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -35,9 +37,29 @@ public class LoadWalletActivity extends AppCompatActivity {
 
         addControls();
         addEvent();
+        Toolbar tb20 = findViewById(R.id.tb20);
+        setSupportActionBar(tb20);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Danh sách ví");
+
         new GetWallet().execute("act=loadwallet");
     }
 
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.menu1:
+                //code xử lý khi bấm menu1
+                break;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     private void addControls() {
         lvWallet = (ListView) findViewById(R.id.lv_wallet);

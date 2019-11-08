@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONException;
@@ -54,11 +55,15 @@ public class ManHinhGiaoDich extends AppCompatActivity {
         edtCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(ManHinhGiaoDich.this, LoadCategoryActivity.class);
-                intent.putExtra("id_wallet", idWallet);
-                intent.putExtra("name_wallet", nameWallet);
-                intent.putExtra("image_wallet", idImgWallet);
-                startActivity(intent);
+                if(edtWallet.getText().toString().isEmpty())
+                {
+                    Toast.makeText(ManHinhGiaoDich.this,"Hãy chọn ví trước",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent intent = new Intent(ManHinhGiaoDich.this, ManHinhThuChi.class);
+
+                    startActivityForResult(intent,1);
+                }
             }
         });
 
@@ -143,23 +148,13 @@ public class ManHinhGiaoDich extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        idCategory = intent.getIntExtra("id_category", -1);
-        nameCategory = intent.getStringExtra("name_category");
-        idImgCategory = intent.getIntExtra("image_category", -1);
         idWallet = intent.getIntExtra("id_wallet", -1);
         nameWallet = intent.getStringExtra("name_wallet");
         idImgWallet = intent.getIntExtra("image_wallet", -1);
 
-        if( idCategory != -1) {
-            edtCategory.setText(nameCategory);
-            txtIdCategory.setText(idCategory+"");
-            imgCategory.setImageResource(idImgCategory);
-        }
-
         if( idWallet != -1) {
             edtWallet.setText(nameWallet);
             txtIdWallet.setText(idWallet + "");
-            imgWallet.setImageResource(idImgWallet);
         }
     }
 
@@ -178,6 +173,26 @@ public class ManHinhGiaoDich extends AppCompatActivity {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                String name= data.getStringExtra("name_category");
+                edtCategory.setText(name);
+                int id= data.getIntExtra("id_category",-1);
+                int img=data.getIntExtra("image_category",-1);
+                if(id!=-1)
+                {
+                    imgCategory.setImageResource(img);
+                }
+
             }
         }
     }
