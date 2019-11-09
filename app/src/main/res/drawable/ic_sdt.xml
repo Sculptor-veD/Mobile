@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:height="60dp"
+    <item android:height="53dp"
         android:width="53dp">
         <shape android:shape="rectangle">
             <solid android:color="#0431B4"> </solid>
             <corners
-                android:bottomLeftRadius="3dp"
-                android:topLeftRadius="3dp"></corners>
+                android:bottomLeftRadius="10dp"
+                android:topLeftRadius="10dp"></corners>
         </shape>
     </item>
     <item android:drawable="@drawable/ic_phone_black_24dp"

@@ -13,7 +13,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".ManHinhLoadIcon">
-
         </activity>
         <activity android:name=".ManHinhHienThiChiTietVi" />
         <activity android:name=".ManHinhThemVi" />
@@ -41,6 +40,7 @@
         <activity android:name=".ManHinhGiaoDich">
 
         </activity>
+        <activity android:name=".ManHinhDoiMatKhau" />
         <activity android:name=".ManHinhTaoVi" />
         <activity android:name=".ManHinhDangKy" />
         <activity android:name=".ManHinhDangNhap" />

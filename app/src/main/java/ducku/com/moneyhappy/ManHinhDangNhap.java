@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +34,11 @@ public class ManHinhDangNhap extends AppCompatActivity {
         addControls();
         addEvent();
 
+        Toolbar tb21 = findViewById(R.id.tb21);
+        setSupportActionBar(tb21);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Đăng nhập");
+
     }
 
     private void addEvent() {
@@ -43,14 +51,14 @@ public class ManHinhDangNhap extends AppCompatActivity {
                 new GoiDangNhap().execute("act=login&phone="+tempSDT+"&password="+tempPassword);
             }
         });
-
         txtdoimatkhau.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent= new Intent(ManHinhDangNhap.this, ManHinhDoiMatKhau.class);
-                startActivity(intent);
-            }
+        @Override
+         public void onClick(View v) {
+         Intent intent = new Intent(ManHinhDangNhap.this, ManHinhDoiMatKhau.class);
+         startActivity(intent);
+         }
         });
+
     }
 
     private void addControls() {
@@ -62,6 +70,8 @@ public class ManHinhDangNhap extends AppCompatActivity {
         twMsg = findViewById(R.id.textView2);
         txtdoimatkhau= findViewById(R.id.txtQuenmatkhau);
         btnDangNhap = findViewById(R.id.btnDangNhap);
+
+
     }
 
     private class GoiDangNhap extends api {
@@ -98,5 +108,17 @@ public class ManHinhDangNhap extends AppCompatActivity {
             }
 
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
