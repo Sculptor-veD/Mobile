@@ -31,7 +31,6 @@ public class ManHinhThuChi extends AppCompatActivity {
     CategoryAdapter adapter;
     Resources res;
     TabHost tabHost;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +61,7 @@ public class ManHinhThuChi extends AppCompatActivity {
                 intent.putExtra("id_category",arrayCategory.get(position).get_id());
                 intent.putExtra("image_category",arrayCategory.get(position).get_img());
                 intent.putExtra("name_category",arrayCategory.get(position).get_name());
+                intent.putExtra("type_category", arrayCategory.get(position).get_type());
                 setResult(RESULT_OK,intent);
                 finish();
             }
@@ -74,12 +74,12 @@ public class ManHinhThuChi extends AppCompatActivity {
         tabHost.setup();
 
         final TabHost.TabSpec tab1=tabHost.newTabSpec("t1");
-        tab1.setIndicator("Thu tiền");
+        tab1.setIndicator("KHOẢN THU");
         tab1.setContent(R.id.tab1);
         tabHost.addTab(tab1);
 
         TabHost.TabSpec tab2=tabHost.newTabSpec("t2");
-        tab2.setIndicator("Chi tiền");
+        tab2.setIndicator("KHOẢN CHI");
         tab2.setContent(R.id.tab2);
         tabHost.addTab(tab2);
 

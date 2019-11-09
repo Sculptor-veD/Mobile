@@ -10,9 +10,10 @@
 
     <TabHost
         android:id="@+id/tabhost"
-        android:theme="@style/TabWidgetTheme"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#2196F3"
+        android:theme="@style/TabWidgetTheme">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +23,8 @@
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="#1BBED3" />
 
             <FrameLayout
                 android:id="@android:id/tabcontent"
@@ -33,15 +35,16 @@
                     android:id="@+id/tab1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
-                </LinearLayout>
+                    android:background="#673AB7"
+                    android:orientation="vertical"></LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/tab2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
-                </LinearLayout>
+                    android:addStatesFromChildren="false"
+                    android:background="#673AB7"
+                    android:orientation="vertical"></LinearLayout>
 
             </FrameLayout>
         </LinearLayout>
@@ -49,7 +52,8 @@
 
     <ListView
         android:id="@+id/lv_load_category"
-        android:layout_below="@id/tabhost"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/tabhost"
+        android:background="#FFFFFF" />
 </RelativeLayout>

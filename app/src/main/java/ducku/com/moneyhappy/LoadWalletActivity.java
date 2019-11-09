@@ -3,6 +3,7 @@ package ducku.com.moneyhappy;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import ducku.com.moneyhappy.adapter.WalletAdapter;
+import ducku.com.moneyhappy.model.Preferences;
 import ducku.com.moneyhappy.model.Wallet;
 
 public class LoadWalletActivity extends AppCompatActivity {
@@ -27,8 +29,7 @@ public class LoadWalletActivity extends AppCompatActivity {
     WalletAdapter adapter;
     Resources res;
 
-    int idCategory, idImgCategory;
-    String nameCategory;
+    String urlAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class LoadWalletActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Danh sách ví");
 
-        new GetWallet().execute("act=loadwallet");
+        new GetWallet().execute(urlAPI);
     }
 
 
@@ -66,10 +67,8 @@ public class LoadWalletActivity extends AppCompatActivity {
         arrayWallet = new ArrayList<>();
         res = getResources();
 
-        Intent intent = getIntent();
-        idCategory = intent.getIntExtra("id_category", -1);
-        nameCategory = intent.getStringExtra("name_category");
-        idImgCategory = intent.getIntExtra("image_category", -1);
+        String userID = Preferences.getUser(LoadWalletActivity.this);
+        urlAPI = "act=loadwallet&iduser="+userID;
 
     }
 
@@ -78,16 +77,12 @@ public class LoadWalletActivity extends AppCompatActivity {
         lvWallet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(LoadWalletActivity.this, ManHinhGiaoDich.class);
+                Intent intent=new Intent();
                 intent.putExtra("id_wallet", arrayWallet.get(position).get_id());
                 intent.putExtra("name_wallet", arrayWallet.get(position).get_name());
                 intent.putExtra("image_wallet", arrayWallet.get(position).get_img());
-
-                intent.putExtra("id_category", idCategory);
-                intent.putExtra("name_category", nameCategory);
-                intent.putExtra("image_category", idImgCategory);
-
-                startActivity(intent);
+                setResult(Activity.RESULT_OK,intent);;
+                finish();
             }
         });
     }
