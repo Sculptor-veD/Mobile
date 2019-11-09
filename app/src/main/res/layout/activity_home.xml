@@ -12,7 +12,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb8"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ToolbarTheme" />
@@ -20,7 +20,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabMonthTransaction"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:background="#149ECC"
             app:tabMode="scrollable"/>
 
@@ -30,7 +30,9 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vpTransaction"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+        android:layout_gravity="bottom" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddTransaction"

@@ -38,7 +38,7 @@ public class ManHinhNhom extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        startActivity(getIntent());
+       // startActivity(getIntent());
     }
 
     @Override
@@ -93,18 +93,25 @@ public class ManHinhNhom extends AppCompatActivity {
         lvCategoryThuChi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ManHinhNhom.this, ManHinhHienThiChiTietNhom.class);
-                intent.putExtra("id_ct", arrayCategory.get(position).get_id());
-                intent.putExtra("name_ct", arrayCategory.get(position).get_name());
-                intent.putExtra("img_ct", arrayCategory.get(position).get_img());
-                intent.putExtra("id_parent", arrayCategory.get(position).get_parentId());
-                intent.putExtra("type", arrayCategory.get(position).get_type());
+                if(txtNameWl.getText().toString()=="")
+                {
+                    Toast.makeText(ManHinhNhom.this,"Bạn chưa chọn ví!, hãy nhấp vào" +
+                            " nút bên phải phía trên để chọn ví ^^",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Intent intent = new Intent(ManHinhNhom.this, ManHinhHienThiChiTietNhom.class);
+                    intent.putExtra("id_ct", arrayCategory.get(position).get_id());
+                    intent.putExtra("name_ct", arrayCategory.get(position).get_name());
+                    intent.putExtra("img_ct", arrayCategory.get(position).get_img());
+                    intent.putExtra("id_parent", arrayCategory.get(position).get_parentId());
+                    intent.putExtra("type", arrayCategory.get(position).get_type());
 
-                intent.putExtra("name_wl", txtNameWl.getText().toString());
+                    intent.putExtra("name_wl", txtNameWl.getText().toString());
 
 
 
-                startActivity(intent);
+                    startActivity(intent);
+                }
             }
         });
     }

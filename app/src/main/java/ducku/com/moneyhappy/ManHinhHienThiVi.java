@@ -47,7 +47,7 @@ public class ManHinhHienThiVi extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        startActivity(getIntent());
+        //startActivity(getIntent());
     }
 
     private void addControls() {

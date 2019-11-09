@@ -22,7 +22,7 @@ public class ManHinhSuaCategory extends AppCompatActivity {
     RadioButton radthu,radchi;
     ImageView imgVi, imgNhomCha, imghinhh;
     EditText editVi,editNhomCha,editTexttennhom;
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,7 +195,6 @@ public class ManHinhSuaCategory extends AppCompatActivity {
             url = url.replace(" ", "%20");
             new api().execute(url);
             Toast.makeText(ManHinhSuaCategory.this, "Save Successfully!", Toast.LENGTH_SHORT).show();
-            this.onRestart();
 
         }
     }
