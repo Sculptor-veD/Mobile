@@ -9,19 +9,13 @@
 
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb"
+        android:id="@+id/tb21"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Đăng nhập"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:textColor="#FFFFFF"></TextView>
+        android:theme="@style/ToolbarTheme" >
+
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout

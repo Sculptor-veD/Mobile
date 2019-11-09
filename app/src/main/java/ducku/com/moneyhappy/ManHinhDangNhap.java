@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +33,11 @@ public class ManHinhDangNhap extends AppCompatActivity {
 
         addControls();
         addEvent();
+
+        Toolbar tb21 = findViewById(R.id.tb21);
+        setSupportActionBar(tb21);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Đăng nhập");
 
     }
 
@@ -100,5 +108,17 @@ public class ManHinhDangNhap extends AppCompatActivity {
             }
 
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

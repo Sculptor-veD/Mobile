@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 public class ManHinhDoiMatKhau extends AppCompatActivity {
 
@@ -16,5 +17,17 @@ public class ManHinhDoiMatKhau extends AppCompatActivity {
         setSupportActionBar(tb19);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Đổi mật khẩu");
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

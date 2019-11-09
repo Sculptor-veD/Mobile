@@ -1,6 +1,7 @@
 package ducku.com.moneyhappy;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +28,11 @@ public class ManHinhDangKy extends AppCompatActivity {
 
         addControls();
         addEvent();
+
+        Toolbar tb22 = findViewById(R.id.tb22);
+        setSupportActionBar(tb22);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Đăng ký");
     }
 
     private void addEvent() {
@@ -89,6 +96,18 @@ public class ManHinhDangKy extends AppCompatActivity {
 
             Toast.makeText(ManHinhDangKy.this, "WEBSERVER-re:\n\n"+s+"\n\n", Toast.LENGTH_SHORT).show();
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

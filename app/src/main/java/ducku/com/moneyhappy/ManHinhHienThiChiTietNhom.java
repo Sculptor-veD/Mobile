@@ -124,7 +124,7 @@ public class ManHinhHienThiChiTietNhom extends AppCompatActivity {
         {
             case android.R.id.home:
                 onBackPressed();
-                return true;
+            return true;
             case R.id.menuedit:
                 Intent intent= new Intent(ManHinhHienThiChiTietNhom.this,ManHinhSuaCategory.class);
                 intent.putExtra("name_ct",txtct.getText().toString());
