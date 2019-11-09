@@ -21,11 +21,7 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".ManHinhSuaCategory" />
         <activity android:name=".ManHinhHienThiGiaoDich">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ManHinhLoadNhomCha" />
         <activity android:name=".ManHinhHienThiChiTietNhom"></activity>
@@ -41,7 +37,13 @@
         <activity android:name=".ManHinhDangKy" />
         <activity android:name=".ManHinhDangNhap" />
         <activity android:name=".api" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
