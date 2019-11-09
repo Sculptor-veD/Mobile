@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent2 = new Intent(MainActivity.this, ManHinhDangKy.class);
+                intent2.putExtra("action","Register");
                 startActivity(intent2);
             }
         });

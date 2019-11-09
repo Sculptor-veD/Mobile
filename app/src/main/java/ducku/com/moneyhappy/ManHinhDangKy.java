@@ -1,5 +1,6 @@
 package ducku.com.moneyhappy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,7 @@ public class ManHinhDangKy extends AppCompatActivity {
 
     Button btnDangKy;
     EditText EditTextSDT;
-    TextView twThongBao, twTieuDeKhung;
+    TextView twThongBao, twTieuDeKhung, twLine1, twLine2;
     String Status = "phone";
 
     @Override
@@ -28,26 +29,56 @@ public class ManHinhDangKy extends AppCompatActivity {
 
         addControls();
         addEvent();
+        forgotpassword();
+
 
     }
 
     private void addEvent() {
+        Intent intent = this.getIntent();
+        String action = intent.getStringExtra("action");
 
-        btnDangKy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String QueryString = "act=register&"+Status+"="+EditTextSDT.getText().toString();
-                Toast.makeText(ManHinhDangKy.this, "query string:\n\n"+ QueryString+"\n\n", Toast.LENGTH_SHORT).show();
-                new goiDangKy().execute(QueryString);
-            }
-        });
+        if (action.equals("ForGotPassword")) {
+
+            btnDangKy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String QueryString = "act=register&" + Status + "=" + EditTextSDT.getText().toString();
+                    Toast.makeText(ManHinhDangKy.this, "query string:\n\n" + QueryString + "\n\n", Toast.LENGTH_SHORT).show();
+                    new goiDangKy().execute(QueryString);
+                    twLine1.setText("Mã OTP có giá trị trong 60s");
+                    twLine2.setText("Nhập mã OTP tại đây");
+                    btnDangKy.setText("Xác nhận");
+
+                }
+            });
+        } else {
+            btnDangKy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String QueryString = "act=register&" + Status + "=" + EditTextSDT.getText().toString();
+                    Toast.makeText(ManHinhDangKy.this, "query string:\n\n" + QueryString + "\n\n", Toast.LENGTH_SHORT).show();
+                    new goiDangKy().execute(QueryString);
+                    twLine1.setText("Mã OTP có giá trị trong 60s");
+                    twLine2.setText("Nhập mã OTP tại đây");
+
+
+
+                }
+            });
+
+        }
 
     }
+
     private void addControls() {
-        btnDangKy     = findViewById(R.id.btnDangKy);
-        EditTextSDT   = findViewById(R.id.editTextSDT);
-        twThongBao    = findViewById(R.id.twThongBao);
+        btnDangKy = findViewById(R.id.btnDangKy);
+        EditTextSDT = findViewById(R.id.editTextSDT);
+        twThongBao = findViewById(R.id.twThongBao);
         twTieuDeKhung = findViewById(R.id.twSDT);
+        twLine1 = findViewById(R.id.textView2);
+        twLine2 = findViewById(R.id.textView3);
+
     }
 
     private class goiDangKy extends api {
@@ -59,30 +90,32 @@ public class ManHinhDangKy extends AppCompatActivity {
                 String result = obj.getString("result");
 
                 // Xu ly dang ky sdt
-                if(Status.equals("phone")){
-                    if(result.equals("OTP")){
+                if (Status.equals("phone")) {
+                    if (result.equals("OTP")) {
                         //bla bla
-                        twThongBao.   setText("Da gui ma OTP den "+EditTextSDT.getText().toString());
-                        twTieuDeKhung.setText("Nhap ma OTP:");
-                        btnDangKy.    setText("Xác Nhận");
-                        Status = "phone="+EditTextSDT.getText().toString()+"&otp";
-                        EditTextSDT.  setText("");
+                        twThongBao.setText("Đã gửi mã OTP đến " + EditTextSDT.getText().toString());
+                        twTieuDeKhung.setText("Nhập mã OTP:");
+                        btnDangKy.setText("Xác Nhận");
+                        Status = "phone=" + EditTextSDT.getText().toString() + "&otp";
+                        EditTextSDT.setText("");
 
-                    } else if(result.equals("ALREADY_EXIST")) {
-                        twThongBao.setText("SDT da ton tai");
+                    } else if (result.equals("ALREADY_EXIST")) {
+                        twThongBao.setText("Số điện thoại đã tồn tại");
 
-                    }else {
-                        twThongBao.setText("Khong co ket noi den sv");
+                    } else {
+                        twThongBao.setText("Không có kết nối");
 
                     }
                 }
                 //Xu ly kich haot tai khoan
                 else {
-                    if(result.equals("true")) {
+                    if (result.equals("true")) {
                         twThongBao.setText("Kich hoat thanh cong -> di den tao mk");
-                    }
-                    else{
-                        twThongBao.setText("Sai ma OTP");
+                        Intent intent = new Intent(ManHinhDangKy.this, ManHinhDoiMatKhau.class);
+                        intent.putExtra("action","ForGotPassword");
+                        startActivity(intent);
+                    } else {
+                        twThongBao.setText("Mã OTP không hợp lệ");
                     }
                 }
 
@@ -90,20 +123,33 @@ public class ManHinhDangKy extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Toast.makeText(ManHinhDangKy.this, "WEBSERVER-re:\n\n"+s+"\n\n", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ManHinhDangKy.this, "WEBSERVER-re:\n\n" + s + "\n\n", Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            default:break;
+            default:
+                break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void forgotpassword() {
+        Intent intent = this.getIntent();
+        String action = intent.getStringExtra("action");
+        if (action.equals("ForGotPassword")) {
+            //QUY TRINH KHOI FUCK MAT KHAU
+            twTieuDeKhung.setText("Hãy nhập số điện thoại đã dùng để đăng ký.");
+            twLine1.setText("Chúng tôi sẽ gửi mã OTP ngày khi bạn nhập số điện thoại hợp lệ.");
+            twLine2.setText("");
+            btnDangKy.setText("Gửi mã OTP");
+        }
     }
 
 }

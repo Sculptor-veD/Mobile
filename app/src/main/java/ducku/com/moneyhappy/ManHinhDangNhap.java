@@ -54,7 +54,8 @@ public class ManHinhDangNhap extends AppCompatActivity {
         txtdoimatkhau.setOnClickListener(new View.OnClickListener() {
         @Override
          public void onClick(View v) {
-         Intent intent = new Intent(ManHinhDangNhap.this, ManHinhDoiMatKhau.class);
+         Intent intent = new Intent(ManHinhDangNhap.this, ManHinhDangKy.class);
+         intent.putExtra("action","ForGotPassword");
          startActivity(intent);
          }
         });
