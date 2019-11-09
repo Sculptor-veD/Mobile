@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -21,8 +22,11 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import ducku.com.moneyhappy.model.Preferences;
+
 public class ManHinhGiaoDich extends AppCompatActivity {
 
+    String iduser;
     LinearLayout choiceCategory;
     EditText edtCategory;
     TextView txtIdCategory;
@@ -32,11 +36,11 @@ public class ManHinhGiaoDich extends AppCompatActivity {
     ImageView imgCategory;
     ImageView imgcalendar;
     Calendar calendar=Calendar.getInstance();
-    SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd");
 
     EditText edtMoney, edtDescript, edtCalendar;
 
-    int idCategory, idImgCategory, idWallet, idImgWallet;
+    int idCategory, idImgCategory, idWallet, idImgWallet, typeCategory;
     String nameCategory, nameWallet;
 
     // btn save
@@ -61,7 +65,6 @@ public class ManHinhGiaoDich extends AppCompatActivity {
                 }
                 else {
                     Intent intent = new Intent(ManHinhGiaoDich.this, ManHinhThuChi.class);
-
                     startActivityForResult(intent,1);
                 }
             }
@@ -71,10 +74,7 @@ public class ManHinhGiaoDich extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(ManHinhGiaoDich.this, LoadWalletActivity.class);
-                intent.putExtra("id_category", idCategory);
-                intent.putExtra("name_category", nameCategory);
-                intent.putExtra("image_category", idImgCategory);
-                startActivity(intent);
+                startActivityForResult(intent,22);
             }
         });
 
@@ -92,8 +92,10 @@ public class ManHinhGiaoDich extends AppCompatActivity {
                     String descript = edtDescript.getText().toString();
                     String created = edtCalendar.getText().toString();
                     String monney = edtMoney.getText().toString();
-                    String url = "act=save_transaction&wallet_id="+idWallet+"&category_id="+idCategory+"&descript="+descript+"&created="+created+"&amount="+monney;
-                    new SaveTransaction().execute("act=save_transaction&wallet_id="+idWallet+"&category_id="+idCategory+"&descript="+descript+"&created="+created+"&amount="+monney);
+                    String url = "act=save_transaction&wallet_id="+idWallet+"&category_id="+idCategory+"&descript="+descript+"&created="+created+"&amount="+monney+"&type="+typeCategory+"&iduser="+iduser;
+                    url = url.replace(" ", "%20");
+                    Log.e("URL: " , url);
+                    new SaveTransaction().execute(url);
                 }
             }
         });
@@ -116,7 +118,7 @@ public class ManHinhGiaoDich extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 calendar.set(i,i1,i2);
-                SimpleDateFormat simpleDateFormat= new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat simpleDateFormat= new SimpleDateFormat("yyyy/MM/dd");
                 edtCalendar.setText(simpleDateFormat.format(calendar.getTime()));
             }
         },nam,thang,ngay);
@@ -125,6 +127,7 @@ public class ManHinhGiaoDich extends AppCompatActivity {
 
 
     private void addControls() {
+        iduser = Preferences.getUser(ManHinhGiaoDich.this);
 
         choiceCategory = findViewById(R.id.choiceCategory);
         edtCategory = findViewById(R.id.edtCategory);
@@ -146,20 +149,10 @@ public class ManHinhGiaoDich extends AppCompatActivity {
         calendar=Calendar.getInstance();
         edtCalendar.setText(sdf.format(calendar.getTime()));
 
-
-        Intent intent = getIntent();
-        idWallet = intent.getIntExtra("id_wallet", -1);
-        nameWallet = intent.getStringExtra("name_wallet");
-        idImgWallet = intent.getIntExtra("image_wallet", -1);
-
-        if( idWallet != -1) {
-            edtWallet.setText(nameWallet);
-            txtIdWallet.setText(idWallet + "");
-        }
     }
 
 
-    private class SaveTransaction extends api { // hiện tại mặc định save là khoản chi
+    private class SaveTransaction extends api {
         protected void onPostExecute(String s) {
 
             JSONObject obj = null;
@@ -184,15 +177,32 @@ public class ManHinhGiaoDich extends AppCompatActivity {
         {
             if(resultCode==RESULT_OK)
             {
-                String name= data.getStringExtra("name_category");
-                edtCategory.setText(name);
-                int id= data.getIntExtra("id_category",-1);
-                int img=data.getIntExtra("image_category",-1);
-                if(id!=-1)
+                nameCategory= data.getStringExtra("name_category");
+                typeCategory = data.getIntExtra("type_category", -1);
+                idCategory= data.getIntExtra("id_category",-1);
+                idImgCategory=data.getIntExtra("image_category",-1);
+                if(idCategory!=-1)
                 {
-                    imgCategory.setImageResource(img);
+                    imgCategory.setImageResource(idImgCategory);
+                    edtCategory.setText(nameCategory);
+                    txtIdCategory.setText(idCategory+"");
                 }
+            }
+        }
 
+        if(requestCode==22)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                nameWallet= data.getStringExtra("name_wallet");
+                idWallet= data.getIntExtra("id_wallet",-1);
+                idImgWallet=data.getIntExtra("image_wallet",-1);
+                if(idWallet!=-1)
+                {
+                    //imgWallet.setImageResource(idImgWallet);
+                    edtWallet.setText(nameWallet);
+                    txtIdWallet.setText(idWallet+"");
+                }
             }
         }
     }

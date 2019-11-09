@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -21,11 +25,17 @@ public class HomeActivity extends AppCompatActivity {
     private TransactionAdapter adapter;
     private RecyclerView rvDeal;
 
+    FloatingActionButton fabAddTransaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         bindView();
+
+        addControls();
+
+        addEvents();
     }
 
     private void bindView() {
@@ -42,4 +52,18 @@ public class HomeActivity extends AppCompatActivity {
         pager.setCurrentItem(pageTransactionAdapter.getCount() - 1);
     }
 
+    private void addEvents() {
+        fabAddTransaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, ManHinhGiaoDich.class);
+                startActivity(intent);
+                Toast.makeText(HomeActivity.this, "Open Add Transaction", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void addControls() {
+        fabAddTransaction = findViewById(R.id.fabAddTransaction);
+    }
 }

@@ -60,7 +60,7 @@
             android:ems="10"
             android:hint="  Nhập số điện thoại"
             android:inputType="number"
-            android:text="0329571692"
+            android:text="123456"
             android:textAlignment="inherit"
             android:textColor="#DF0101"
             android:textSize="16sp"

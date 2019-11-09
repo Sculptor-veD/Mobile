@@ -2,6 +2,7 @@ package ducku.com.moneyhappy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 import ducku.com.moneyhappy.adapter.CategoryAdapter;
 import ducku.com.moneyhappy.model.Category;
+import ducku.com.moneyhappy.model.Preferences;
 
 public class LoadCategoryActivity extends AppCompatActivity {
 
@@ -25,9 +27,7 @@ public class LoadCategoryActivity extends AppCompatActivity {
     ArrayList<Category> arrayCategory;
     CategoryAdapter adapter;
     Resources res;
-
-    int idWallet, idImgWallet;
-    String nameWallet;
+    String urlAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class LoadCategoryActivity extends AppCompatActivity {
         addControls();
         addEvent();
 
-        new GetCategory().execute("act=getcategory&iduser=1&type=1");
+        new GetCategory().execute(urlAPI);
     }
 
     private void addControls() {
@@ -45,11 +45,8 @@ public class LoadCategoryActivity extends AppCompatActivity {
         arrayCategory = new ArrayList<>();
         res = getResources();
 
-        Intent intent = getIntent();
-        idWallet = intent.getIntExtra("id_wallet", -1);
-        nameWallet = intent.getStringExtra("name_wallet");
-        idImgWallet = intent.getIntExtra("image_wallet", -1);
-
+        String userID = Preferences.getUser(LoadCategoryActivity.this);
+        urlAPI = "act=getcategory&iduser="+userID+"&type=1";
     }
 
     private void addEvent() {
@@ -57,15 +54,12 @@ public class LoadCategoryActivity extends AppCompatActivity {
         lvCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(LoadCategoryActivity.this, ManHinhGiaoDich.class);
+                Intent intent=new Intent();
                 intent.putExtra("id_category", arrayCategory.get(position).get_id());
                 intent.putExtra("name_category", arrayCategory.get(position).get_name());
                 intent.putExtra("image_category", arrayCategory.get(position).get_img());
-
-                intent.putExtra("id_wallet", idWallet);
-                intent.putExtra("name_wallet", nameWallet);
-                intent.putExtra("image_wallet", idImgWallet);
-                startActivity(intent);
+                setResult(Activity.RESULT_OK,intent);;
+                finish();
             }
         });
 

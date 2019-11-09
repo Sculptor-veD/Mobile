@@ -37,7 +37,7 @@
 
             <EditText
                 android:hint="Name"
-                android:id="@+id/editText2"
+                android:id="@+id/editNameWallet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -77,7 +77,7 @@
                 app:srcCompat="@drawable/icon_hanmucchi" />
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/editWalletAmount"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
