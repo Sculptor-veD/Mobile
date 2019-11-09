@@ -97,6 +97,7 @@ public class ManHinhDangKy extends AppCompatActivity {
                         twTieuDeKhung.setText("Nhập mã OTP:");
                         btnDangKy.setText("Xác Nhận");
                         Status = "phone=" + EditTextSDT.getText().toString() + "&otp";
+                        EditTextSDT.setHint("Hãy nhập mã OTP");
                         EditTextSDT.setText("");
 
                     } else if (result.equals("ALREADY_EXIST")) {
