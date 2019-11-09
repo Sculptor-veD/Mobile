@@ -40,7 +40,7 @@ public class ManHinhThuChi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_thu_chi);
 
-        getidwallet();
+        getidwallet(); // phuoc - them
 
         addControls();
 
@@ -51,8 +51,7 @@ public class ManHinhThuChi extends AppCompatActivity {
 
     private void getidwallet(){
         Intent intent = this.getIntent();
-        idWallet = intent.getStringExtra("xxx");
-        Toast.makeText(ManHinhThuChi.this, "WEBSERVER-re:\n\n" + idWallet + "\n\n", Toast.LENGTH_SHORT).show();
+        idWallet = intent.getStringExtra("idwallet");
     }
 
 
@@ -66,7 +65,6 @@ public class ManHinhThuChi extends AppCompatActivity {
                 else {
                     new GetCategory().execute("act=getcategory&walletid="+idWallet+"&type=0"); //phuoc - sua
                 }
-                Toast.makeText(ManHinhThuChi.this, "WEBSERVER-re:\n\n" + idWallet + "\n\n", Toast.LENGTH_SHORT).show();
             }
         });
 
