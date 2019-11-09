@@ -19,7 +19,7 @@ import ducku.com.moneyhappy.model.Preferences;
 public class ManHinhDangNhap extends AppCompatActivity {
 
     EditText txtSDT,txtPassword;
-    TextView twMsg;
+    TextView twMsg, txtdoimatkhau;
     Button btnDangNhap;
 
     @Override
@@ -43,6 +43,14 @@ public class ManHinhDangNhap extends AppCompatActivity {
                 new GoiDangNhap().execute("act=login&phone="+tempSDT+"&password="+tempPassword);
             }
         });
+
+        txtdoimatkhau.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(ManHinhDangNhap.this, ManHinhDoiMatKhau.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void addControls() {
@@ -52,7 +60,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
         txtPassword=findViewById(R.id.txtPassword);
 
         twMsg = findViewById(R.id.textView2);
-
+        txtdoimatkhau= findViewById(R.id.txtQuenmatkhau);
         btnDangNhap = findViewById(R.id.btnDangNhap);
     }
 
