@@ -3,6 +3,7 @@ package ducku.com.moneyhappy;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.PeriodicSync;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,9 +23,10 @@ import java.util.ArrayList;
 
 import ducku.com.moneyhappy.adapter.CategoryAdapter;
 import ducku.com.moneyhappy.model.Category;
+import ducku.com.moneyhappy.model.Preferences;
 
 public class ManHinhNhom extends AppCompatActivity {
-
+    String userID;
     ImageView imgadd;
     TextView txtNameWl;
     ImageButton imgchonvi;
@@ -32,6 +34,13 @@ public class ManHinhNhom extends AppCompatActivity {
     ArrayList<Category> arrayCategory;
     CategoryAdapter adapter;
     Resources res;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        startActivity(getIntent());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +48,13 @@ public class ManHinhNhom extends AppCompatActivity {
 
         addControls();
         addEvents();
-        new GetCategoryChi().execute("act=getcategory&iduser=1&type=0");
-        new GetCategoryThu().execute("act=getcategory&iduser=1&type=1");
+        new GetCategoryChi().execute("act=getcategory&iduser="+userID+"&type=0");
+        new GetCategoryThu().execute("act=getcategory&iduser="+userID+"&type=1");
     }
 
     private void addControls() {
+        userID = Preferences.getUser(this);
+
         Intent intent=getIntent();
         String name_wl= intent.getStringExtra("NameWallet");
         txtNameWl= findViewById(R.id.txtNameWl);
@@ -82,25 +93,18 @@ public class ManHinhNhom extends AppCompatActivity {
         lvCategoryThuChi.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(txtNameWl.getText().toString()=="")
-                {
-                    Toast.makeText(ManHinhNhom.this,"Bạn chưa chọn ví!, hãy nhấp vào" +
-                            " nút bên phải phía trên để chọn ví ^^",Toast.LENGTH_LONG).show();
-                }
-                else {
-                    Intent intent = new Intent(ManHinhNhom.this, ManHinhHienThiChiTietNhom.class);
-                    intent.putExtra("id_ct", arrayCategory.get(position).get_id());
-                    intent.putExtra("name_ct", arrayCategory.get(position).get_name());
-                    intent.putExtra("img_ct", arrayCategory.get(position).get_img());
-                    intent.putExtra("id_parent", arrayCategory.get(position).get_parentId());
-                    intent.putExtra("type", arrayCategory.get(position).get_type());
+                Intent intent = new Intent(ManHinhNhom.this, ManHinhHienThiChiTietNhom.class);
+                intent.putExtra("id_ct", arrayCategory.get(position).get_id());
+                intent.putExtra("name_ct", arrayCategory.get(position).get_name());
+                intent.putExtra("img_ct", arrayCategory.get(position).get_img());
+                intent.putExtra("id_parent", arrayCategory.get(position).get_parentId());
+                intent.putExtra("type", arrayCategory.get(position).get_type());
 
-                    intent.putExtra("name_wl", txtNameWl.getText().toString());
+                intent.putExtra("name_wl", txtNameWl.getText().toString());
 
 
 
-                    startActivity(intent);
-                }
+                startActivity(intent);
             }
         });
     }

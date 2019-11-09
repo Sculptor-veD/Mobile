@@ -38,6 +38,7 @@ public class ManHinhHienThiChiTietNhom extends AppCompatActivity {
     int type;
     int id_ct;
     int img_ct;
+    int parrentID;
     ArrayList<Category> arrayCategory;
     Resources res;
     ImageView imgct,imgvi,imgnhomcha,imgnhom;
@@ -82,6 +83,7 @@ public class ManHinhHienThiChiTietNhom extends AppCompatActivity {
         txttype=findViewById(R.id.txttype);
 
         Intent intent=getIntent();
+        parrentID = intent.getIntExtra("id_parent", -1);
         id_ct=intent.getIntExtra("id_ct",-1);
         img_ct=intent.getIntExtra("img_ct",-1);
         String name_ct=intent.getStringExtra("name_ct");
@@ -132,10 +134,12 @@ public class ManHinhHienThiChiTietNhom extends AppCompatActivity {
                 intent.putExtra("img_ct",img_ct);
                 intent.putExtra("type",type);
                 intent.putExtra("name_wl",txtvi.getText().toString());
+                intent.putExtra("id_parent", parrentID);
                 startActivity(intent);
                 break;
             case R.id.menudelete:
                 //code xử lý khi bấm menu2
+                new DeleteCategory().execute("act=delete_category&id="+id_ct);
                 break;
             default:break;
         }
@@ -175,5 +179,25 @@ public class ManHinhHienThiChiTietNhom extends AppCompatActivity {
         });
         requestQueue.add(jsonObjectRequest);
 
+    }
+
+
+    private class DeleteCategory extends api {
+        protected void onPostExecute(String s) {
+            JSONObject obj = null;
+            try {
+                obj = new JSONObject(s);
+                String result = obj.getString("result");
+                if(result.equals("true")){
+                    Toast.makeText(ManHinhHienThiChiTietNhom.this, "Deleted!", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                } else {
+                    Toast.makeText(ManHinhHienThiChiTietNhom.this, "Danh mục còn liên kết nhiều giao dịch, Ko thể xóa danh mục này!", Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }

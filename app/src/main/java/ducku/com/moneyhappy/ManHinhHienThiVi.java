@@ -18,10 +18,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import ducku.com.moneyhappy.adapter.WalletAdapter;
+import ducku.com.moneyhappy.model.Preferences;
 import ducku.com.moneyhappy.model.Wallet;
 
 public class ManHinhHienThiVi extends AppCompatActivity {
 
+    String userID;
     ListView lvWallet;
     ArrayList<Wallet> arrayWallet;
     WalletAdapter adapter;
@@ -39,10 +41,18 @@ public class ManHinhHienThiVi extends AppCompatActivity {
         addControls();
         addEvents();
 
-        new GetWallet().execute("act=loadwallet");
+        new GetWallet().execute("act=loadwallet&iduser="+userID);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        startActivity(getIntent());
     }
 
     private void addControls() {
+        userID = Preferences.getUser(this);
+
         lvWallet = (ListView) findViewById(R.id.lvgetwl);
         arrayWallet = new ArrayList<>();
         res = getResources();
@@ -66,10 +76,11 @@ public class ManHinhHienThiVi extends AppCompatActivity {
         switch (item.getItemId())
         {
             case android.R.id.home:
-                onBackPressed();
+                finish();
                 return true;
             case R.id.menu1:
                 //code xử lý khi bấm menu1
+                onBackPressed();
                 break;
             default:break;
         }

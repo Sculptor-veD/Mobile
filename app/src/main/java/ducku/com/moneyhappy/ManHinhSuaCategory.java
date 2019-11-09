@@ -2,6 +2,7 @@ package ducku.com.moneyhappy;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,10 +17,13 @@ import android.widget.Toast;
 
 public class ManHinhSuaCategory extends AppCompatActivity {
     LinearLayout linear;
-    int type;
+    int type, parentID, id_ct, hinh;
+    String tennhom;
     RadioButton radthu,radchi;
     ImageView imgVi, imgNhomCha, imghinhh;
     EditText editVi,editNhomCha,editTexttennhom;
+    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,11 +52,13 @@ public class ManHinhSuaCategory extends AppCompatActivity {
         editTexttennhom=findViewById(R.id.edittennhom);
 
         Intent intent=getIntent();
-        String tennhom=intent.getStringExtra("name_ct");
-        int id_ct=intent.getIntExtra("id_ct",-1);
+        tennhom=intent.getStringExtra("name_ct");
+        id_ct=intent.getIntExtra("id_ct",-1);
         int img_ct=intent.getIntExtra("img_ct",-1);
         type=intent.getIntExtra("type",-1);
         String tenvi=intent.getStringExtra("name_wl");
+        parentID = intent.getIntExtra("id_parent", -1);
+        hinh = img_ct;
 
         if(id_ct!=-1) {
             editTexttennhom.setText(tennhom);
@@ -67,6 +73,12 @@ public class ManHinhSuaCategory extends AppCompatActivity {
             radthu.setChecked(true);
 
         editVi.setText(tenvi);
+
+        if(parentID == 0) {
+            editNhomCha.setText("Đây đã là nhóm cha!");
+            editNhomCha.setEnabled(false);
+            imgNhomCha.setEnabled(false);
+        }
 
     }
 
@@ -120,6 +132,8 @@ public class ManHinhSuaCategory extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
+            case R.id.menuUpdateCategoy:
+                UpdateCategory(id_ct, editTexttennhom.getText().toString() , parentID, hinh);
             default:break;
         }
 
@@ -134,6 +148,7 @@ public class ManHinhSuaCategory extends AppCompatActivity {
                 int id_category =data.getIntExtra("id_ct",-1);
                 String NameCT=data.getStringExtra("name_ct");
                 int Img_cha=data.getIntExtra("img",-1);
+                parentID = data.getIntExtra("id_ct",-1);
 
                 if(id_category!=-1) {
                     editNhomCha.setText(NameCT);
@@ -151,13 +166,37 @@ public class ManHinhSuaCategory extends AppCompatActivity {
         {
             if(resultCode==RESULT_OK)
             {
-                int hinh=data.getIntExtra("id_hinh",-1);
+                hinh=data.getIntExtra("id_hinh",-1);
+                //Toast.makeText(this, getResources().getResourceEntryName(hinh), Toast.LENGTH_SHORT).show();
                 imghinhh.setImageResource(hinh);
             }
             else
             {
                 Toast.makeText(ManHinhSuaCategory.this,"Lấy hình thất bại",Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    private void UpdateCategory(int id, String name, int parentID, int image) {
+        String imageName = getResources().getResourceEntryName(image);
+        if(imageName.isEmpty()) {
+            Toast.makeText(this, "Lỗi chọn hình", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+
+        if(name.isEmpty()) {
+            Toast.makeText(this, "Nhập tên..", Toast.LENGTH_SHORT).show();
+        }
+        else if(parentID == -1) {
+            Toast.makeText(this, "Lỗi, Chọn lại danh mục cha..", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            String url = "act=update_category&name="+name+"&id="+id+"&parent_id="+parentID+"&image_name="+imageName;
+            url = url.replace(" ", "%20");
+            new api().execute(url);
+            Toast.makeText(ManHinhSuaCategory.this, "Save Successfully!", Toast.LENGTH_SHORT).show();
+            this.onRestart();
+
         }
     }
 

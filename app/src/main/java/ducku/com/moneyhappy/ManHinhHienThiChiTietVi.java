@@ -14,12 +14,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ManHinhHienThiChiTietVi extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import ducku.com.moneyhappy.model.Preferences;
+
+public class ManHinhHienThiChiTietVi extends AppCompatActivity {
+    String  userID;
     ImageView imgluunha;
     EditText editnamenha;
     TextView txtsotien;
     LinearLayout line4;
+    int id_wl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +41,28 @@ public class ManHinhHienThiChiTietVi extends AppCompatActivity {
     }
 
     private void addEvents() {
+        imgluunha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            String nameWL      = editnamenha.getText().toString();
+            if(nameWL.isEmpty()){
+                Toast.makeText(ManHinhHienThiChiTietVi.this, "Tên không được để trống", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                String url = "act=update_wallet&name="+nameWL+"&id="+id_wl;
+                url = url.replace(" ", "%20");
+                new api().execute(url);
+                Toast.makeText(ManHinhHienThiChiTietVi.this, "Save Successfully!", Toast.LENGTH_SHORT).show();
+                imgluunha.setVisibility(View.INVISIBLE);
+                editnamenha.setEnabled(false);
+            }
+            }
+        });
     }
 
     private void addControls() {
+        userID = Preferences.getUser(this);
+
         line4=findViewById(R.id.line4);
         imgluunha=findViewById( R.id.imgluunha);
         editnamenha=findViewById(R.id.editnamenha);
@@ -47,6 +72,7 @@ public class ManHinhHienThiChiTietVi extends AppCompatActivity {
 
         String name_ct=intent.getStringExtra("name_wl");
         int amount=intent.getIntExtra("amount_wl",-1);
+        id_wl = intent.getIntExtra("id_wl", -1);
 
         editnamenha.setText(name_ct);
         txtsotien.setText(amount+" đ");
@@ -73,7 +99,7 @@ public class ManHinhHienThiChiTietVi extends AppCompatActivity {
                 Toast.makeText(ManHinhHienThiChiTietVi.this,"Bạn đang ở trong trạng thái sửa ví",Toast.LENGTH_LONG).show();
                 break;
             case R.id.menudelete:
-                //code xử lý khi bấm menu2
+                new DeleteWallet().execute("act=delete_wallet&id="+id_wl);
                 break;
             default:break;
         }
@@ -81,4 +107,27 @@ public class ManHinhHienThiChiTietVi extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private class DeleteWallet extends api {
+        protected void onPostExecute(String s) {
+            JSONObject obj = null;
+            try {
+                obj = new JSONObject(s);
+                String result = obj.getString("result");
+                if(result.equals("true")){
+                    Toast.makeText(ManHinhHienThiChiTietVi.this, "Deleted!", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
+                } else {
+                    Toast.makeText(ManHinhHienThiChiTietVi.this, "Ví còn liên kết nhiều giao dịch, Ko thể xóa ví này!", Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private void DeleteWallet(String id) {
+        new api().execute("act=delete_wallet&id="+id_wl);
+
+    }
 }

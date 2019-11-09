@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import ducku.com.moneyhappy.adapter.WalletAdapter;
+import ducku.com.moneyhappy.model.Preferences;
 import ducku.com.moneyhappy.model.Wallet;
 
 public class ManHinhVi extends AppCompatActivity {
@@ -33,6 +34,14 @@ public class ManHinhVi extends AppCompatActivity {
     ArrayList<Wallet> arrayWallet;
     WalletAdapter adapter;
     Resources res;
+    String userID;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        startActivity(getIntent());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,15 +56,16 @@ public class ManHinhVi extends AppCompatActivity {
         addControls();
         addEvent();
 
-        new GetWallet().execute("act=loadwallet");
+        new GetWallet().execute("act=loadwallet&iduser="+userID);
     }
 
     private void addControls() {
+        userID = Preferences.getUser(this);
         lvWallet = (ListView) findViewById(R.id.lvwl);
         arrayWallet = new ArrayList<>();
         res = getResources();
 
-        imgthem=findViewById(R.id.imgthem);
+        imgthem=findViewById(R.id.imgThemVi);
         txtTong=findViewById(R.id.txtTong);
     }
 
@@ -64,9 +74,11 @@ public class ManHinhVi extends AppCompatActivity {
         lvWallet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent= new Intent(ManHinhVi.this,ManHinhNhom.class);
-                intent.putExtra("IDWallet",arrayWallet.get(position).get_id());
-                intent.putExtra("NameWallet",arrayWallet.get(position).get_name());
+                Intent intent = new Intent(ManHinhVi.this, ManHinhHienThiChiTietVi.class);
+                intent.putExtra("id_wl",arrayWallet.get(position).get_id());
+                intent.putExtra("name_wl",arrayWallet.get(position).get_name());
+                intent.putExtra("amount_wl",arrayWallet.get(position).get_amount());
+                intent.putExtra("img_wl",arrayWallet.get(position).get_img());
                 startActivity(intent);
             }
         });
@@ -75,6 +87,7 @@ public class ManHinhVi extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ManHinhVi.this,ManHinhThemVi.class);
+                intent.putExtra("activityBefore", "ManHinhVi");
                 startActivity(intent);
             }
         });
@@ -91,9 +104,8 @@ public class ManHinhVi extends AppCompatActivity {
         switch (item.getItemId())
         {
             case android.R.id.home:
-                Intent intent= new Intent(ManHinhVi.this,ManHinhNhom.class);
-                startActivity(intent);
-                break;
+                onBackPressed();
+                return true;
             case R.id.menusua:
                 Intent intent1 = new Intent(ManHinhVi.this,ManHinhHienThiVi.class);
                 startActivity(intent1);

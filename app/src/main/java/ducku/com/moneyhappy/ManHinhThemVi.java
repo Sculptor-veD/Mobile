@@ -3,11 +3,13 @@ package ducku.com.moneyhappy;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -17,15 +19,19 @@ import ducku.com.moneyhappy.model.Preferences;
 
 public class ManHinhThemVi extends AppCompatActivity {
 
+    private static String beforeActivity;
     EditText editWalletName;
     EditText editWalletAmount;
     String iduser;
+
+    public static String getBeforActivity(){
+        return beforeActivity;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_them_vi);
-
 
         Toolbar tb10 = findViewById(R.id.tb10);
         setSupportActionBar(tb10);
@@ -44,6 +50,9 @@ public class ManHinhThemVi extends AppCompatActivity {
         editWalletName = (EditText) findViewById(R.id.editNameWallet);
         editWalletAmount = (EditText) findViewById(R.id.editWalletAmount);
         iduser = Preferences.getUser(ManHinhThemVi.this);
+
+        Intent intent = getIntent();
+        beforeActivity =  intent.getStringExtra("activityBefore");
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
@@ -89,6 +98,14 @@ public class ManHinhThemVi extends AppCompatActivity {
                 String result = obj.getString("result");
                 if(result.equals("true")){
                     Toast.makeText(ManHinhThemVi.this, "Save Success!", Toast.LENGTH_SHORT).show();
+                    String bfActivity = ManHinhThemVi.getBeforActivity();
+                    if(bfActivity.equals("ManHinhTaoVi")) {
+                        Intent intent = new Intent(ManHinhThemVi.this, HomeActivity.class);
+                        startActivity(intent);
+                    }
+                    if(bfActivity.equals("ManHinhVi")) {
+                        onBackPressed();
+                    }
                 } else {
                     Toast.makeText(ManHinhThemVi.this, "Save Error!", Toast.LENGTH_SHORT).show();
                 }

@@ -37,6 +37,7 @@ public class ManHinhTaoVi extends AppCompatActivity {
         {
             case R.id.menutaovi:
                 Intent intent= new Intent(ManHinhTaoVi.this, ManHinhThemVi.class);
+                intent.putExtra("activityBefore", "ManHinhTaoVi");
                 startActivity(intent);
                 break;
             default:break;

@@ -69,6 +69,7 @@
                     android:id="@+id/radthu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     android:text="Khoản thu" />
 
                 <RadioButton
@@ -76,6 +77,7 @@
                     android:id="@+id/radchi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
                     android:text="Khoản chi" />
             </RadioGroup>
         </LinearLayout>

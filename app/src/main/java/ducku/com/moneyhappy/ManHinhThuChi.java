@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 import ducku.com.moneyhappy.adapter.CategoryAdapter;
 import ducku.com.moneyhappy.model.Category;
+import ducku.com.moneyhappy.model.Preferences;
 
 public class ManHinhThuChi extends AppCompatActivity {
 
@@ -31,6 +32,8 @@ public class ManHinhThuChi extends AppCompatActivity {
     CategoryAdapter adapter;
     Resources res;
     TabHost tabHost;
+
+    String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +49,10 @@ public class ManHinhThuChi extends AppCompatActivity {
             @Override
             public void onTabChanged(String tabId) {
                 if(tabId.equals("t1")) {
-                    new GetCategory().execute("act=getcategory&iduser=1&type=1");
+                    new GetCategory().execute("act=getcategory&iduser="+userID+"&type=1");
                 }
                 else {
-                    new GetCategory().execute("act=getcategory&iduser=1&type=0");
+                    new GetCategory().execute("act=getcategory&iduser="+userID+"&type=0");
                 }
             }
         });
@@ -69,6 +72,8 @@ public class ManHinhThuChi extends AppCompatActivity {
     }
 
     private void addControls() {
+        userID = Preferences.getUser(ManHinhThuChi.this);
+
         tabHost= findViewById(R.id.tabhost);
 
         tabHost.setup();
@@ -91,7 +96,7 @@ public class ManHinhThuChi extends AppCompatActivity {
 
         // Set defult load is tab thu and Listview Thu
         tabHost.setCurrentTab(0);
-        new GetCategory().execute("act=getcategory&iduser=1&type=1");
+        new GetCategory().execute("act=getcategory&iduser="+userID+"&type=1");
     }
 
     private class GetCategory extends api {

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menu1"
+        android:id="@+id/menuUpdateCategoy"
         android:icon="@android:drawable/ic_menu_save"
         android:title="Menu 1"
         app:showAsAction="always" />

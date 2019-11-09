@@ -19,9 +19,11 @@ import java.util.ArrayList;
 
 import ducku.com.moneyhappy.adapter.CategoryAdapter;
 import ducku.com.moneyhappy.model.Category;
+import ducku.com.moneyhappy.model.Preferences;
 
 public class ManHinhLoadNhomCha1 extends AppCompatActivity {
 
+    String userID;
 
     ListView lvCategory;
     ArrayList<Category> arrayCategory;
@@ -42,10 +44,12 @@ public class ManHinhLoadNhomCha1 extends AppCompatActivity {
 
         Intent intent=getIntent();
         int type=intent.getIntExtra("type",-1);
-        new GetCategory().execute("act=getcategory&iduser=1&type="+type+"&onlyparent=true");
+        new GetCategory().execute("act=getcategory&iduser="+userID+"&type="+type+"&onlyparent=true");
     }
 
     private void addControls() {
+        userID = Preferences.getUser(this);
+
         lvCategory = (ListView) findViewById(R.id.lvctcha);
         arrayCategory = new ArrayList<>();
         res = getResources();
@@ -59,6 +63,7 @@ public class ManHinhLoadNhomCha1 extends AppCompatActivity {
                 intent.putExtra("id_ct",arrayCategory.get(position).get_id());
                 intent.putExtra("name_ct",arrayCategory.get(position).get_name());
                 intent.putExtra("img",arrayCategory.get(position).get_img());
+                intent.putExtra("parentId", arrayCategory.get(position).get_parentId());
                 setResult(RESULT_OK,intent);
                 finish();
             }
