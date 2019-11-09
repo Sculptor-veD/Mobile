@@ -5,66 +5,108 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#2E9AFE"
     tools:context=".MainActivity">
-
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb22"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ToolbarTheme" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:background="#FFFFFF"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/twSDT"
+        <LinearLayout
+            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="100dp"
-            android:lineSpacingExtra="8sp"
-            android:text="Số điện thoại:"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            tools:visibility="visible" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextSDT"
+            <TextView
+                android:gravity="center"
+                android:id="@+id/twSDT"
+                android:textColor="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Hãy nhập số điện thoại"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:visibility="visible" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="76dp"
-            android:ems="10"
-            android:inputType="phone"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnDangKy"
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Dùng số điện thoại để đăng ký hoặc"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="đăng nhập vào MoneyHappy"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Đăng Ký" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/twThongBao"
+            <EditText
+                android:gravity="center"
+                android:hint="Hãy nhập SĐT"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/custom_editext"
+                android:id="@+id/editTextSDT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="phone"
+                android:textColor="#000000" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
+            <Button
+                android:id="@+id/btnDangKy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_button"
+                android:text="Đăng Ký"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="7"
-        android:background="#FFFFFF"
-        android:gravity="center"
+        android:layout_weight="1"
         android:orientation="vertical">
 
-
+        <TextView
+            android:id="@+id/twThongBao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </LinearLayout>

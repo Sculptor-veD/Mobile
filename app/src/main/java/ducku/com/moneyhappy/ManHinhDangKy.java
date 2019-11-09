@@ -29,10 +29,6 @@ public class ManHinhDangKy extends AppCompatActivity {
         addControls();
         addEvent();
 
-        Toolbar tb22 = findViewById(R.id.tb22);
-        setSupportActionBar(tb22);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Đăng ký");
     }
 
     private void addEvent() {
