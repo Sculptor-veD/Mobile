@@ -65,6 +65,7 @@ public class ManHinhGiaoDich extends AppCompatActivity {
                 }
                 else {
                     Intent intent = new Intent(ManHinhGiaoDich.this, ManHinhThuChi.class);
+                    intent.putExtra("xxx",idWallet+""); //phuoc - them
                     startActivityForResult(intent,1);
                 }
             }

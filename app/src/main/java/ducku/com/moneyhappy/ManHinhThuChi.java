@@ -32,6 +32,7 @@ public class ManHinhThuChi extends AppCompatActivity {
     CategoryAdapter adapter;
     Resources res;
     TabHost tabHost;
+    String idWallet;
 
     String userID;
     @Override
@@ -39,21 +40,33 @@ public class ManHinhThuChi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_thu_chi);
 
+        getidwallet();
+
         addControls();
 
         addEvents();
+
+
     }
+
+    private void getidwallet(){
+        Intent intent = this.getIntent();
+        idWallet = intent.getStringExtra("xxx");
+        Toast.makeText(ManHinhThuChi.this, "WEBSERVER-re:\n\n" + idWallet + "\n\n", Toast.LENGTH_SHORT).show();
+    }
+
 
     private void addEvents() {
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
                 if(tabId.equals("t1")) {
-                    new GetCategory().execute("act=getcategory&iduser="+userID+"&type=1");
+                    new GetCategory().execute("act=getcategory&walletid="+idWallet+"&type=1"); //phuoc - sua
                 }
                 else {
-                    new GetCategory().execute("act=getcategory&iduser="+userID+"&type=0");
+                    new GetCategory().execute("act=getcategory&walletid="+idWallet+"&type=0"); //phuoc - sua
                 }
+                Toast.makeText(ManHinhThuChi.this, "WEBSERVER-re:\n\n" + idWallet + "\n\n", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -96,7 +109,7 @@ public class ManHinhThuChi extends AppCompatActivity {
 
         // Set defult load is tab thu and Listview Thu
         tabHost.setCurrentTab(0);
-        new GetCategory().execute("act=getcategory&iduser="+userID+"&type=1");
+        new GetCategory().execute("act=getcategory&walletid="+idWallet+"&type=1"); //phuoc - sua
     }
 
     private class GetCategory extends api {

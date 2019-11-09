@@ -47,6 +47,9 @@ public class LoadCategoryActivity extends AppCompatActivity {
 
         String userID = Preferences.getUser(LoadCategoryActivity.this);
         urlAPI = "act=getcategory&iduser="+userID+"&type=1";
+        //phuoc
+        urlAPI = "act=getcategory&iduser="+userID+"&type=1&walletid";
+
     }
 
     private void addEvent() {
