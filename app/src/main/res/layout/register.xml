@@ -105,6 +105,9 @@
         android:orientation="vertical">
 
         <TextView
+            android:gravity="center"
+            android:textColor="#E72F59"
+            android:textStyle="bold"
             android:id="@+id/twThongBao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
