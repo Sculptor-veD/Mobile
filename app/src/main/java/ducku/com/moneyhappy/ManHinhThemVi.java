@@ -66,7 +66,7 @@ public class ManHinhThemVi extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
-            case R.id.menu1:
+            case R.id.menuUpdateCategoy:
                 func_SaveWallet(editWalletName.getText().toString(), editWalletAmount.getText().toString());
                 break;
             default:break;
