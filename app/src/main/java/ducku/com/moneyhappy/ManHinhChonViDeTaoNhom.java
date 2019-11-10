@@ -48,9 +48,10 @@ public class ManHinhChonViDeTaoNhom extends AppCompatActivity {
         lvWallet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent= new Intent(ManHinhChonViDeTaoNhom.this, ManHinhTaoNhom.class);
+                Intent intent= new Intent();
                 intent.putExtra("Name",arrayWallet.get(position).get_name());
-                startActivity(intent);
+                setResult(RESULT_OK,intent);
+                finish();
             }
         });
     }
