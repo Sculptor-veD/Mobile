@@ -60,7 +60,7 @@ public class ManHinhTaoNhom extends AppCompatActivity {
         imgNhomCha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(ManHinhTaoNhom.this,ManHinhLoadNhomCha.class);
+                Intent intent= new Intent(ManHinhTaoNhom.this,ManHinhLoadNhomCha1.class);
                 if(radchi.isChecked()==true)
                 {
                     type=0;
@@ -71,7 +71,7 @@ public class ManHinhTaoNhom extends AppCompatActivity {
                     type=1;
                     intent.putExtra("type",type);
                 }
-                startActivity(intent);
+                startActivityForResult(intent,3);
             }
         });
 
@@ -165,6 +165,19 @@ public class ManHinhTaoNhom extends AppCompatActivity {
             {
                 String name=data.getStringExtra("Name");
                 editVi.setText(name);
+            }
+        }
+        if(requestCode==3)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                String name=data.getStringExtra("name_ct");
+                int id= data.getIntExtra("id_ct",-1);
+                int img=data.getIntExtra("img",-1);
+                if(id!=-1) {
+                    editNhomCha.setText(name);
+                    imgNhomCha.setImageResource(img);
+                }
             }
         }
     }
