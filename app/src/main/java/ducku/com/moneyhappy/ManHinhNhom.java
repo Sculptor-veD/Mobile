@@ -1,12 +1,15 @@
 package ducku.com.moneyhappy;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.PeriodicSync;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -48,6 +51,9 @@ public class ManHinhNhom extends AppCompatActivity {
 
         addControls();
         addEvents();
+        Toolbar tb2 = findViewById(R.id.toolbar2);
+        setSupportActionBar(tb2);
+        setTitle("Nhóm");
         new GetCategoryChi().execute("act=getcategory&iduser="+userID+"&type=0");
         new GetCategoryThu().execute("act=getcategory&iduser="+userID+"&type=1");
     }
@@ -165,6 +171,40 @@ public class ManHinhNhom extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.mymenu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.menuhd:
+                Intent intent3= new Intent(ManHinhNhom.this,HomeActivity.class);
+                startActivity(intent3);
+                break;
+            case R.id.menuvi:
+                Intent intent= new Intent(ManHinhNhom.this,ManHinhVi.class);
+                startActivity(intent);
+                break;
+            case R.id.menunhom:
+                Intent intent2= new Intent(ManHinhNhom.this,ManHinhNhom.class);
+                startActivity(intent2);
+                break;
+            case R.id.menudangxuat:
+                Intent intent1= new Intent(ManHinhNhom.this,ManHinhDangNhap.class);
+                startActivity(intent1);
+                break;
+            default:break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -37,7 +37,6 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar tb8 = findViewById(R.id.tb8);
         setSupportActionBar(tb8);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setTitle("Giao dịch Demo");
 
         bindView();
@@ -99,6 +98,10 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.menunhom:
                 Intent intent2= new Intent(HomeActivity.this,ManHinhNhom.class);
                 startActivity(intent2);
+                break;
+            case R.id.menudangxuat:
+                Intent intent1= new Intent(HomeActivity.this,ManHinhDangNhap.class);
+                startActivity(intent1);
                 break;
             default:break;
         }

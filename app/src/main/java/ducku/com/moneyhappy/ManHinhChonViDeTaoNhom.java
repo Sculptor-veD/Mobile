@@ -18,6 +18,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import ducku.com.moneyhappy.adapter.WalletAdapter;
+import ducku.com.moneyhappy.model.Preferences;
 import ducku.com.moneyhappy.model.Wallet;
 
 public class ManHinhChonViDeTaoNhom extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class ManHinhChonViDeTaoNhom extends AppCompatActivity {
     ListView lvWallet;
     ArrayList<Wallet> arrayWallet;
     WalletAdapter adapter;
+    String UserId;
     Resources res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class ManHinhChonViDeTaoNhom extends AppCompatActivity {
         addControls();
         addEvents();
 
-        new GetWallet().execute("act=loadwallet");
+        new GetWallet().execute("act=loadwallet&iduser="+UserId);
     }
 
     private void addEvents() {
@@ -54,6 +56,7 @@ public class ManHinhChonViDeTaoNhom extends AppCompatActivity {
     }
 
     private void addControls() {
+        UserId = Preferences.getUser(this);
         lvWallet = (ListView) findViewById(R.id.lvgetwl);
         arrayWallet = new ArrayList<>();
         res = getResources();
