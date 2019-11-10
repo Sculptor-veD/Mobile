@@ -21,6 +21,7 @@ public class ManHinhDangKy extends AppCompatActivity {
     EditText EditTextSDT;
     TextView twThongBao, twTieuDeKhung, twLine1, twLine2;
     String Status = "phone";
+    String PhoneNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,8 @@ public class ManHinhDangKy extends AppCompatActivity {
             btnDangKy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    String QueryString = "act=register&" + Status + "=" + EditTextSDT.getText().toString();
-                    Toast.makeText(ManHinhDangKy.this, "query string:\n\n" + QueryString + "\n\n", Toast.LENGTH_SHORT).show();
+                    String QueryString = "act=forgotpw&" + Status + "=" + EditTextSDT.getText().toString();
+                    //Toast.makeText(ManHinhDangKy.this, "query string:\n\n" + QueryString + "\n\n", Toast.LENGTH_SHORT).show();
                     new goiDangKy().execute(QueryString);
                     twLine1.setText("Mã OTP có giá trị trong 60s");
                     twLine2.setText("Nhập mã OTP tại đây");
@@ -57,10 +58,9 @@ public class ManHinhDangKy extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     String QueryString = "act=register&" + Status + "=" + EditTextSDT.getText().toString();
-                    Toast.makeText(ManHinhDangKy.this, "query string:\n\n" + QueryString + "\n\n", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ManHinhDangKy.this, "query string:\n\n" + QueryString + "\n\n", Toast.LENGTH_SHORT).show();
                     new goiDangKy().execute(QueryString);
-                    twLine1.setText("Mã OTP có giá trị trong 60s");
-                    twLine2.setText("Nhập mã OTP tại đây");
+
 
 
 
@@ -93,8 +93,11 @@ public class ManHinhDangKy extends AppCompatActivity {
                 if (Status.equals("phone")) {
                     if (result.equals("OTP")) {
                         //bla bla
+                        PhoneNum =  EditTextSDT.getText().toString();
                         twThongBao.setText("Đã gửi mã OTP đến " + EditTextSDT.getText().toString());
                         twTieuDeKhung.setText("Nhập mã OTP:");
+                        twLine1.setText("Mã OTP có giá trị trong 60s");
+                        twLine2.setText("Nhập mã OTP tại đây");
                         btnDangKy.setText("Xác Nhận");
                         Status = "phone=" + EditTextSDT.getText().toString() + "&otp";
                         EditTextSDT.setHint("Hãy nhập mã OTP");
@@ -113,7 +116,7 @@ public class ManHinhDangKy extends AppCompatActivity {
                     if (result.equals("true")) {
                         twThongBao.setText("Kich hoat thanh cong -> di den tao mk");
                         Intent intent = new Intent(ManHinhDangKy.this, ManHinhDoiMatKhau.class);
-                        intent.putExtra("action","ForGotPassword");
+                        intent.putExtra("phonenum",PhoneNum);
                         startActivity(intent);
                     } else {
                         twThongBao.setText("Mã OTP không hợp lệ");
@@ -124,7 +127,7 @@ public class ManHinhDangKy extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Toast.makeText(ManHinhDangKy.this, "WEBSERVER-re:\n\n" + s + "\n\n", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(ManHinhDangKy.this, "WEBSERVER-re:\n\n" + s + "\n\n", Toast.LENGTH_SHORT).show();
         }
     }
 

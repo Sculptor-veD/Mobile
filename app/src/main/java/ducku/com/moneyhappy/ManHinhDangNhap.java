@@ -67,6 +67,8 @@ public class ManHinhDangNhap extends AppCompatActivity {
 
         txtSDT.setSelection(0);
         txtPassword=findViewById(R.id.txtPassword);
+        txtSDT.setText("");
+        txtPassword.setText("");
 
         twMsg = findViewById(R.id.textView2);
         txtdoimatkhau= findViewById(R.id.txtQuenmatkhau);
@@ -86,7 +88,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
                 String checkWallet = obj.getString("wallet");
                 if(accountId.equals("false")){
                     //bla bla
-                    twMsg.setText("Thong tin khong chinh xac \n Du lieu mau: PHONE/PW: 0329571692/123456");
+                    twMsg.setText("Thong tin khong chinh xac");
                 } else {
                     //bla bla
                     twMsg.setText("Dang nhap thanh cong");
