@@ -46,10 +46,10 @@
 
 
     <ListView
-        android:layout_marginTop="15dp"
         android:id="@+id/lvKhoanChi"
         android:layout_width="match_parent"
-        android:layout_height="500dp"></ListView>
+        android:layout_height="400dp"
+        android:layout_marginTop="15dp"></ListView>
 
     <ImageView
         android:id="@+id/imgAdd"

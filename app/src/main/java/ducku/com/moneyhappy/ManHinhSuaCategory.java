@@ -195,7 +195,7 @@ public class ManHinhSuaCategory extends AppCompatActivity {
             url = url.replace(" ", "%20");
             new api().execute(url);
             Toast.makeText(ManHinhSuaCategory.this, "Save Successfully!", Toast.LENGTH_SHORT).show();
-
+            onBackPressed();
         }
     }
 

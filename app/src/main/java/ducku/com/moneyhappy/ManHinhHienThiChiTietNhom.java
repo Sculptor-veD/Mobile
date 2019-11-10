@@ -43,6 +43,20 @@ public class ManHinhHienThiChiTietNhom extends AppCompatActivity {
     Resources res;
     ImageView imgct,imgvi,imgnhomcha,imgnhom;
     TextView txtct,txtvi,txtnhomcha,txttype;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        startActivity(getIntent());
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ManHinhNhom.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
