@@ -61,11 +61,12 @@ public class ManHinhLoadNhomCha extends AppCompatActivity {
         lvCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent= new Intent(ManHinhLoadNhomCha.this, ManHinhTaoNhom.class);
+                Intent intent= new Intent();
                 intent.putExtra("id_category", arrayCategory.get(position).get_id());
                 intent.putExtra("NameCT",arrayCategory.get(position).get_name());
                 intent.putExtra("Img",arrayCategory.get(position).get_img());
-                startActivity(intent);
+                setResult(RESULT_OK,intent);
+                finish();
             }
         });
     }

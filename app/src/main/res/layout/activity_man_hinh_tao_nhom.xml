@@ -115,7 +115,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="6"
-                app:srcCompat="@drawable/wallet_1" />
+                app:srcCompat="@drawable/wallet_1"
+                android:enabled="false"/>
 
             <EditText
                 android:layout_marginLeft="10dp"
@@ -125,7 +126,8 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Ví" />
+                android:hint="Chọn ví: update sau"
+                android:enabled="false"/>
         </LinearLayout>
     </LinearLayout>
 

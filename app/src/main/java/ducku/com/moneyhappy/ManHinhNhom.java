@@ -41,8 +41,16 @@ public class ManHinhNhom extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-       // startActivity(getIntent());
+        startActivity(getIntent());
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
