@@ -70,7 +70,7 @@ public class ManHinhTaoNhom extends AppCompatActivity {
         imgNhomCha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(ManHinhTaoNhom.this,ManHinhLoadNhomCha.class);
+                Intent intent= new Intent(ManHinhTaoNhom.this,ManHinhLoadNhomCha1.class);
                 if(radchi.isChecked()==true)
                 {
                     type=0;
@@ -81,7 +81,11 @@ public class ManHinhTaoNhom extends AppCompatActivity {
                     type=1;
                     intent.putExtra("type",type);
                 }
+<<<<<<< HEAD
                 startActivityForResult(intent, 2);
+=======
+                startActivityForResult(intent,3);
+>>>>>>> 94b520b58e509f1628a195a504ffb85348c9f16c
             }
         });
 
@@ -185,6 +189,7 @@ public class ManHinhTaoNhom extends AppCompatActivity {
                 editVi.setText(name);
             }
         }
+<<<<<<< HEAD
 
         if(requestCode == 2) {
             if(resultCode==RESULT_OK) {
@@ -196,10 +201,22 @@ public class ManHinhTaoNhom extends AppCompatActivity {
                 String name_ctCha=data.getStringExtra("NameCT");
                 if(parentId!=-1) {
                     editNhomCha.setText(name_ctCha);
+=======
+        if(requestCode==3)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                String name=data.getStringExtra("name_ct");
+                int id= data.getIntExtra("id_ct",-1);
+                int img=data.getIntExtra("img",-1);
+                if(id!=-1) {
+                    editNhomCha.setText(name);
+>>>>>>> 94b520b58e509f1628a195a504ffb85348c9f16c
                     imgNhomCha.setImageResource(img);
                 }
             }
         }
+<<<<<<< HEAD
     }
 
     private void CreateCategory(String name, int parentID, int image) {
@@ -248,5 +265,7 @@ public class ManHinhTaoNhom extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+=======
+>>>>>>> 94b520b58e509f1628a195a504ffb85348c9f16c
     }
 }
