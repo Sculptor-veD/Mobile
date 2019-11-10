@@ -14,5 +14,5 @@ public class ManHinhDoiMatKhau extends AppCompatActivity {
         setContentView(R.layout.activity_man_hinh_doi_mat_khau);
 
     }
-   
+
 }
