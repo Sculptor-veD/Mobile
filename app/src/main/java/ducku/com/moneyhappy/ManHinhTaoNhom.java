@@ -53,6 +53,7 @@ public class ManHinhTaoNhom extends AppCompatActivity {
 
                 //startActivity(intent);
 
+
             }
         });
 
@@ -61,6 +62,7 @@ public class ManHinhTaoNhom extends AppCompatActivity {
             public void onClick(View v) {
                // Intent intent= new Intent(ManHinhTaoNhom.this, ManHinhChonViDeTaoNhom.class);
                // startActivity(intent);
+
 
             }
         });
@@ -173,9 +175,14 @@ public class ManHinhTaoNhom extends AppCompatActivity {
                 image_id = data.getIntExtra("id_hinh",2131230881);
                 imghinhh.setImageResource(hinh);
             }
-            else
+
+        }
+        if(requestCode==2)
+        {
+            if(resultCode==RESULT_OK)
             {
-                Toast.makeText(ManHinhTaoNhom.this,"Lấy hình thất bại",Toast.LENGTH_LONG).show();
+                String name=data.getStringExtra("Name");
+                editVi.setText(name);
             }
         }
 
