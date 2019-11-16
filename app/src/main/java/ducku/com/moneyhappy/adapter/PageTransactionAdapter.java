@@ -13,7 +13,13 @@ import ducku.com.moneyhappy.TransactionFragment;
 
 public class PageTransactionAdapter extends FragmentStatePagerAdapter {
 
-    public static final  int NUM_TAB = 21;
+    private List<Fragment> fragmentList = new ArrayList<>();
+    private List<String> titleList = new ArrayList<>();
+
+    public void add(Fragment fragment, String title) {
+        fragmentList.add(fragment);
+        titleList.add(title);
+    }
 
     public PageTransactionAdapter(FragmentManager fm) {
         super(fm);
@@ -21,34 +27,17 @@ public class PageTransactionAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Calendar calendar = getCalendarAt(position);
-
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int year = calendar.get(Calendar.YEAR);
-
-        return TransactionFragment.newInstance(month, year);
+        return fragmentList.get(position);
     }
 
     @Override
     public int getCount() {
-        return NUM_TAB;
+        return fragmentList.size();
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        Calendar calendar = getCalendarAt(position);
-
-        int month = calendar.get(Calendar.MONTH) + 1;
-        int year = calendar.get(Calendar.YEAR);
-
-        return "Tháng " + month + " / " + year;
-    }
-
-    private Calendar getCalendarAt(int i) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MONTH, i - NUM_TAB + 1);
-
-        return calendar;
+        return titleList.get(position);
     }
 }

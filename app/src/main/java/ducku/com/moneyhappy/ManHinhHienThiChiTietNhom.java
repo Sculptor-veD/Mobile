@@ -45,19 +45,6 @@ public class ManHinhHienThiChiTietNhom extends AppCompatActivity {
     TextView txtct,txtvi,txtnhomcha,txttype;
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        startActivity(getIntent());
-    }
-
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, ManHinhNhom.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_hien_thi_chi_tiet_nhom);

@@ -1,6 +1,7 @@
 package ducku.com.moneyhappy;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import ducku.com.moneyhappy.adapter.TransactionAdapter;
+import ducku.com.moneyhappy.model.Preferences;
 import ducku.com.moneyhappy.model.Transaction;
 
 public class TransactionFragment extends Fragment {
@@ -33,7 +39,7 @@ public class TransactionFragment extends Fragment {
 
     private int month, year;
 
-    private List<Transaction> transactionList = new ArrayList<>();
+    public List<Transaction> transactionList =  new ArrayList<>();
     private TransactionAdapter adapter;
     private RecyclerView rvTransaction;
 
@@ -60,20 +66,47 @@ public class TransactionFragment extends Fragment {
     }
 
     private void loadData() {
-        // load your data here, in this, I create some example of data
-        if(month % 2 == 0 ) {
-            for (int i = 1; i <= month; i++) {
-                Transaction transaction = new Transaction(i,  R.drawable.icon_fb, i, i, "Giao dịch thứ " + i, "mô tả thứ " + i, i * 1000);
-                transactionList.add(transaction);
+        String userId = Preferences.getUser(getContext());
+        String url= "act=gettransaction&account_id="+userId+"&month="+month+"&year="+year;
+        Log.e("URL", url);
+
+        //transactionList = new ArrayList<>();
+        new GetTransaction().execute(url);
+//        // change data to display on view
+//        adapter.notifyDataSetChanged();
+
+    }
+
+
+    public class GetTransaction extends api {
+
+        @Override
+        public void onPostExecute(String s) {
+            JSONArray array = null;
+            try {
+                array = new JSONArray(s);
+                for(int i=0;i<array.length();i++)
+                {
+                    JSONObject object=array.getJSONObject(i);
+                    int id=object.getInt("id");
+                    int type_id=object.getInt("type_id");
+                    int wallet_id=object.getInt("wallet_id");
+                    int category_id=object.getInt("category_id");
+                    String category_name=object.getString("category_name");
+                    String descript=object.getString("descript");
+                    int imgage_category=getResources().getIdentifier(object.getString("image_category"),"drawable", getContext().getPackageName());
+                    int image_wallet=getResources().getIdentifier(object.getString("image_wallet"),"drawable", getContext().getPackageName());
+                    int amount=object.getInt("amount");
+                    String created=object.getString("created");
+                    Transaction transaction = new Transaction(id, type_id, wallet_id, category_id, amount, imgage_category, image_wallet, category_name, created, descript);
+                    transactionList.add(transaction);
+                }
+
+                adapter.notifyDataSetChanged();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
-        else  {
-            for (int i = 1; i <= 20; i++) {
-                Transaction transaction = new Transaction(i,  R.drawable.icon_gg, i, i, "Giao dịch thứ " + i, "mô tả thứ " + i, i * 10500);
-                transactionList.add(transaction);
-            }
-        }
-        // change data to display on view
-        adapter.notifyDataSetChanged();
     }
 }

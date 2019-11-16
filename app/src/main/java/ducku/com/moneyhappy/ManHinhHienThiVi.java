@@ -51,6 +51,13 @@ public class ManHinhHienThiVi extends AppCompatActivity {
         startActivity(getIntent());
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, ManHinhVi.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
     private void addControls() {
         userID = Preferences.getUser(this);
 

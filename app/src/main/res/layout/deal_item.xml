@@ -13,108 +13,107 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:id="@+id/panelTransactionCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="4dp">
-
-        <ImageView
-            android:id="@+id/ivThumbnail"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:padding="8dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_plus" />
-
-        <TextView
-            android:id="@+id/tvName"
+        <RelativeLayout
+            android:id="@+id/panelTransactionCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/tvPrice"
-            android:layout_toLeftOf="@+id/tvPrice"
-            android:layout_toEndOf="@+id/ivThumbnail"
-            android:layout_toRightOf="@+id/ivThumbnail"
-            android:ellipsize="end"
-            android:lines="1"
-            android:text="Ăn tối"
-            android:textColor="#353535"
-            android:textSize="16sp" />
+            android:padding="4dp">
 
-        <TextView
-            android:id="@+id/tvDescription"
+            <ImageView
+                android:id="@+id/ivThumbnailCategory"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_plus" />
+
+            <TextView
+                android:id="@+id/tvNameCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/tvPrice"
+                android:layout_toLeftOf="@+id/tvPrice"
+                android:layout_toEndOf="@+id/ivThumbnailCategory"
+                android:layout_toRightOf="@+id/ivThumbnailCategory"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Ăn tối"
+                android:textColor="#353535"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvNameCategory"
+                android:layout_toStartOf="@+id/tvPrice"
+                android:layout_toLeftOf="@+id/tvPrice"
+                android:layout_toEndOf="@+id/ivThumbnailCategory"
+                android:layout_toRightOf="@+id/ivThumbnailCategory"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="1 giao dịch" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="500,000 đ"
+                android:textColor="@color/colorPrimaryDark" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/panelTransactionDescript"
+            android:layout_below="@id/panelTransactionCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvName"
-            android:layout_toStartOf="@+id/tvPrice"
-            android:layout_toLeftOf="@+id/tvPrice"
-            android:layout_toEndOf="@+id/ivThumbnail"
-            android:layout_toRightOf="@+id/ivThumbnail"
-            android:ellipsize="end"
-            android:lines="1"
-            android:text="Lâu lâu ăn lẩu tại nhà hàng cho sướng" />
+            android:padding="4dp">
 
-        <TextView
-            android:id="@+id/tvPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="500,000 đ"
-            android:textColor="@color/colorPrimaryDark" />
-    </RelativeLayout>
+            <ImageView
+                android:id="@+id/ivThumbnailWallet"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_plus" />
 
-    <RelativeLayout
-        android:id="@+id/panelTransactionDescript"
-        android:layout_below="@id/panelTransactionCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="4dp">
+            <TextView
+                android:id="@+id/tvCreated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/tvPrice2"
+                android:layout_toLeftOf="@+id/tvPrice2"
+                android:layout_toEndOf="@+id/ivThumbnailWallet"
+                android:layout_toRightOf="@+id/ivThumbnailWallet"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Ăn tối"
+                android:textColor="#353535"
+                android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/ivThumbnail2"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:padding="8dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/icon_plus" />
+            <TextView
+                android:id="@+id/tvDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvCreated"
+                android:layout_toStartOf="@+id/tvPrice2"
+                android:layout_toLeftOf="@+id/tvPrice2"
+                android:layout_toEndOf="@+id/ivThumbnailWallet"
+                android:layout_toRightOf="@+id/ivThumbnailWallet"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Lâu lâu ăn lẩu tại nhà hàng cho sướng" />
 
-        <TextView
-            android:id="@+id/tvName2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/tvPrice2"
-            android:layout_toLeftOf="@+id/tvPrice2"
-            android:layout_toEndOf="@+id/ivThumbnail2"
-            android:layout_toRightOf="@+id/ivThumbnail2"
-            android:ellipsize="end"
-            android:lines="1"
-            android:text="Ăn tối"
-            android:textColor="#353535"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tvDescription2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvName2"
-            android:layout_toStartOf="@+id/tvPrice2"
-            android:layout_toLeftOf="@+id/tvPrice2"
-            android:layout_toEndOf="@+id/ivThumbnail2"
-            android:layout_toRightOf="@+id/ivThumbnail2"
-            android:ellipsize="end"
-            android:lines="1"
-            android:text="Lâu lâu ăn lẩu tại nhà hàng cho sướng" />
-
-        <TextView
-            android:id="@+id/tvPrice2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="500,000 đ"
-            android:textColor="@color/colorPrimaryDark" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tvPrice2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="500,000 đ"
+                android:textColor="#00aeff" />
+        </RelativeLayout>
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

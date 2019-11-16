@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import ducku.com.moneyhappy.adapter.PageTransactionAdapter;
@@ -23,7 +25,7 @@ import ducku.com.moneyhappy.adapter.TransactionAdapter;
 import ducku.com.moneyhappy.model.Transaction;
 
 public class HomeActivity extends AppCompatActivity {
-
+    private final int NUM_TAB = 12;
     private List<Transaction> transactionList = new ArrayList<>();
     private TransactionAdapter adapter;
     private RecyclerView rvDeal;
@@ -46,10 +48,25 @@ public class HomeActivity extends AppCompatActivity {
         addEvents();
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        startActivity(getIntent());
+    }
+
     private void bindView() {
 
         ViewPager pager = findViewById(R.id.vpTransaction);
         PageTransactionAdapter pageTransactionAdapter = new PageTransactionAdapter(getSupportFragmentManager());
+
+        for (int i = NUM_TAB; i > 0; i--) {
+            Calendar calendar = getCalendarAt(i);
+            int month = calendar.get(Calendar.MONTH) + 1;
+            int year = calendar.get(Calendar.YEAR);
+
+            pageTransactionAdapter.add(TransactionFragment.newInstance(month, year), "Tháng " + month + " / " + year);
+        }
+
 //        pageTransactionAdapter.add(TransactionFragment.newInstance(10, 2019), "Thang 10");
 //        pageTransactionAdapter.add(TransactionFragment.newInstance(11, 2019), "Thang 11");
         pager.setAdapter(pageTransactionAdapter);
@@ -57,8 +74,17 @@ public class HomeActivity extends AppCompatActivity {
         TabLayout tabMonTransaction = findViewById(R.id.tabMonthTransaction);
         tabMonTransaction.setupWithViewPager(pager);
 
-        pager.setCurrentItem(pageTransactionAdapter.getCount() - 1);
+        pager.setCurrentItem(NUM_TAB - 1);
     }
+    private Calendar getCalendarAt(int i) {
+        Calendar calendar = Calendar.getInstance();
+        Log.e("calendar: ", calendar.get(Calendar.MONTH)+"");
+        Log.e("calendar: ", calendar.get(Calendar.YEAR)+"");
+        calendar.add(Calendar.MONTH, 1 - i);
+
+        return calendar;
+    }
+
 
     private void addEvents() {
         fabAddTransaction.setOnClickListener(new View.OnClickListener() {

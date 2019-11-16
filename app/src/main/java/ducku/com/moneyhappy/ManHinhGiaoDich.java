@@ -162,6 +162,7 @@ public class ManHinhGiaoDich extends AppCompatActivity {
                 String result = obj.getString("result");
                 if(result.equals("true")){
                     Toast.makeText(ManHinhGiaoDich.this, "Save Success!", Toast.LENGTH_LONG).show();
+                    onBackPressed();
                 } else {
                     Toast.makeText(ManHinhGiaoDich.this, "Error!", Toast.LENGTH_LONG).show();
                 }
