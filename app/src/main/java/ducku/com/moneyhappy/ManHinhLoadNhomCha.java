@@ -20,12 +20,14 @@ import java.util.ArrayList;
 
 import ducku.com.moneyhappy.adapter.CategoryAdapter;
 import ducku.com.moneyhappy.model.Category;
+import ducku.com.moneyhappy.model.Preferences;
 
 public class ManHinhLoadNhomCha extends AppCompatActivity {
 
     ListView lvCategory;
     ArrayList<Category> arrayCategory;
     CategoryAdapter adapter;
+    String Userid;
     Resources res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class ManHinhLoadNhomCha extends AppCompatActivity {
 
         Intent intent=getIntent();
         int type=intent.getIntExtra("type",-1);
-        new GetCategory().execute("act=getcategory&iduser=1&type="+type+"&onlyparent=true");
+        new GetCategory().execute("act=getcategory&iduser="+Userid+"&type="+type+"&onlyparent=true");
 
     }
     @Override
@@ -72,6 +74,7 @@ public class ManHinhLoadNhomCha extends AppCompatActivity {
     }
 
     private void addControls() {
+        Userid = Preferences.getUser(this);
         lvCategory = (ListView) findViewById(R.id.lvctcha);
         arrayCategory = new ArrayList<>();
         res = getResources();

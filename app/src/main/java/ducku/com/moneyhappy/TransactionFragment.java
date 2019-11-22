@@ -72,7 +72,7 @@ public class TransactionFragment extends Fragment {
 
         //transactionList = new ArrayList<>();
         new GetTransaction().execute(url);
-//        // change data to display on view
+        // change data to display on view
 //        adapter.notifyDataSetChanged();
 
     }

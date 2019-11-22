@@ -6,10 +6,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,10 +47,12 @@ public class ManHinhLoadNhomCha1 extends AppCompatActivity {
         Intent intent=getIntent();
         int type=intent.getIntExtra("type",-1);
         new GetCategory().execute("act=getcategory&iduser="+userID+"&type="+type+"&onlyparent=true");
+
     }
 
     private void addControls() {
         userID = Preferences.getUser(this);
+        Log.e("aaaa",userID);
 
         lvCategory = (ListView) findViewById(R.id.lvctcha);
         arrayCategory = new ArrayList<>();
