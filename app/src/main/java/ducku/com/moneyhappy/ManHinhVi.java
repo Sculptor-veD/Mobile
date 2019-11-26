@@ -66,6 +66,7 @@ public class ManHinhVi extends AppCompatActivity {
         addEvent();
 
         new GetWallet().execute("act=loadwallet&iduser="+userID);
+
     }
 
     private void addControls() {
@@ -90,6 +91,8 @@ public class ManHinhVi extends AppCompatActivity {
             }
         });
 
+//        int m=lvWallet.getCount();
+//        Toast.makeText(ManHinhVi.this,m+"aaaa",Toast.LENGTH_LONG).show();
         imgthem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,15 +132,19 @@ public class ManHinhVi extends AppCompatActivity {
 
             try {
                 JSONArray array = new JSONArray(s);
-
+                int tong=0;
                 for (int i = 0 ; i < array.length(); i++) {
-                    int tong=0;
                     JSONObject wallet = array.getJSONObject(i);
                     int id = wallet.getInt("id");
                     int amount = wallet.getInt("amount");
                     String name =wallet.getString("name");
                     int idImg = res.getIdentifier(wallet.getString("image_name") , "drawable", getPackageName());
                     arrayWallet.add(new Wallet(id, amount, idImg, name));
+
+                    tong=tong+amount;
+
+                    txtTong.setText(tong+" đ");
+                    Toast.makeText(ManHinhVi.this,tong+"aaaa",Toast.LENGTH_LONG).show();
 
                 }
 
