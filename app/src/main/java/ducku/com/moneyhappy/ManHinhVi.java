@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -130,6 +131,7 @@ public class ManHinhVi extends AppCompatActivity {
                 JSONArray array = new JSONArray(s);
 
                 for (int i = 0 ; i < array.length(); i++) {
+                    int tong=0;
                     JSONObject wallet = array.getJSONObject(i);
                     int id = wallet.getInt("id");
                     int amount = wallet.getInt("amount");
@@ -137,16 +139,11 @@ public class ManHinhVi extends AppCompatActivity {
                     int idImg = res.getIdentifier(wallet.getString("image_name") , "drawable", getPackageName());
                     arrayWallet.add(new Wallet(id, amount, idImg, name));
 
-
-                    int tong=0;
-                    for(Wallet wl:arrayWallet) {
-                        tong += amount;
-                        txtTong.setText("= "+tong + " đ");
-                    }
                 }
 
                 adapter = new WalletAdapter(ManHinhVi.this, R.layout.custom_listview_wallet, arrayWallet);
                 lvWallet.setAdapter(adapter);
+
 
             } catch (JSONException e) {
                 e.printStackTrace();

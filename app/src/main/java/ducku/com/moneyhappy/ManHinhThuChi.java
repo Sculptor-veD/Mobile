@@ -40,7 +40,7 @@ public class ManHinhThuChi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_thu_chi);
 
-        getidwallet(); // phuoc - them
+        getidwallet(); //phuoc - them
 
         addControls();
 
@@ -60,10 +60,10 @@ public class ManHinhThuChi extends AppCompatActivity {
             @Override
             public void onTabChanged(String tabId) {
                 if(tabId.equals("t1")) {
-                    new GetCategory().execute("act=getcategory&iduser=1&type=1"); //phuoc - sua
+                    new GetCategory().execute("act=getcategory&iduser="+userID+"&type=1"); //phuoc - sua
                 }
                 else {
-                    new GetCategory().execute("act=getcategory&iduser=1&type=0"); //phuoc - sua
+                    new GetCategory().execute("act=getcategory&iduser="+userID+"&type=0"); //phuoc - sua
                 }
             }
         });

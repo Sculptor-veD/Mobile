@@ -74,7 +74,7 @@ public class WalletAdapter extends BaseAdapter {
         holder.txtName.setText(wallet.get_name());
         holder.txtAmount.setText(wallet.get_amount()+" đ");
         holder.img.setImageResource(wallet.get_img());
-
+        
         return convertView;
     }
 
