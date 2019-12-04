@@ -32,6 +32,7 @@ import ducku.com.moneyhappy.model.Preferences;
 public class ManHinhNhom extends AppCompatActivity {
     String name_wl;
     String name_wl1;
+    int IdWallet;
     String userID;
     ImageView imgadd;
     TextView txtNameWl;
@@ -74,6 +75,7 @@ public class ManHinhNhom extends AppCompatActivity {
 
         Intent intent=getIntent();
         name_wl= intent.getStringExtra("NameWallet");
+        IdWallet=intent.getIntExtra("IDWallet",-1);
         name_wl1=intent.getStringExtra("nameWL");
         txtNameWl= findViewById(R.id.txtNameWl);
         if(name_wl1!=null)
@@ -110,7 +112,9 @@ public class ManHinhNhom extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ManHinhNhom.this, ManHinhTaoNhom.class);
-                startActivity(intent);
+                intent.putExtra("nameWL",name_wl);
+                intent.putExtra("idWL",IdWallet);
+                startActivityForResult(intent,44);
             }
         });
 
@@ -206,6 +210,7 @@ public class ManHinhNhom extends AppCompatActivity {
             case R.id.menuhd:
                 Intent intent3= new Intent(ManHinhNhom.this,HomeActivity.class);
                 intent3.putExtra("nameWL",name_wl);
+                intent3.putExtra("idWL",IdWallet);
                 startActivityForResult(intent3,1);
                 break;
             case R.id.menuvi:

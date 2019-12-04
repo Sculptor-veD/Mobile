@@ -107,7 +107,7 @@ public class ManHinhThuChi extends AppCompatActivity {
 
         // Set defult load is tab thu and Listview Thu
         tabHost.setCurrentTab(0);
-        new GetCategory().execute("act=getcategory&iduser=1&type=1"); //phuoc - sua
+        new GetCategory().execute("act=getcategory&iduser="+userID+"&type=1"); //phuoc - sua
     }
 
     private class GetCategory extends api {

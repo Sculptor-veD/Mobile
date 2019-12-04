@@ -143,7 +143,7 @@ public class ManHinhVi extends AppCompatActivity {
 
                     tong=tong+amount;
 
-                    txtTong.setText(tong+" đ");
+                    txtTong.setText("= "+tong+" vnd");
 
                 }
 

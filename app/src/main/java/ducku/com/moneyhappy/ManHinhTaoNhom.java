@@ -49,9 +49,9 @@ public class ManHinhTaoNhom extends AppCompatActivity {
         imgVi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent intent= new Intent(ManHinhTaoNhom.this, ManHinhChonViDeTaoNhom.class);
+                Intent intent= new Intent(ManHinhTaoNhom.this, ManHinhChonViDeTaoNhom.class);
 
-                //startActivity(intent);
+                startActivityForResult(intent,44);
 
             }
         });
@@ -59,8 +59,8 @@ public class ManHinhTaoNhom extends AppCompatActivity {
         editVi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent intent= new Intent(ManHinhTaoNhom.this, ManHinhChonViDeTaoNhom.class);
-                // startActivity(intent);
+                Intent intent= new Intent(ManHinhTaoNhom.this, ManHinhChonViDeTaoNhom.class);
+                startActivityForResult(intent,44);
 
             }
         });
@@ -125,8 +125,8 @@ public class ManHinhTaoNhom extends AppCompatActivity {
         editNameCategory = findViewById(R.id.editText);
 
         Intent intent=getIntent();
-        String name_wl=intent.getStringExtra("Name");
-        editVi.setText(name_wl);
+        //String name_wl=intent.getStringExtra("Name");
+        //editVi.setText(name_wl);
 
         int id_ct= intent.getIntExtra("id_category",-1);
         int img=intent.getIntExtra("Img",-1);
@@ -181,8 +181,7 @@ public class ManHinhTaoNhom extends AppCompatActivity {
 
         if(requestCode == 2) {
             if(resultCode==RESULT_OK) {
-                String name_wl=data.getStringExtra("Name");
-                editVi.setText(name_wl);
+
 
                 parentId = data.getIntExtra("id_category",-1);
                 int img=data.getIntExtra("Img",-1);
@@ -191,6 +190,14 @@ public class ManHinhTaoNhom extends AppCompatActivity {
                     editNhomCha.setText(name_ctCha);
                     imgNhomCha.setImageResource(img);
                 }
+            }
+        }
+        if(requestCode==44)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                String name_wl=data.getStringExtra("Name");
+                editVi.setText(name_wl);
             }
         }
     }

@@ -30,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     private TransactionAdapter adapter;
     private RecyclerView rvDeal;
     String name_wl;
+    int id_wl;
 
     FloatingActionButton fabAddTransaction;
 
@@ -92,11 +93,13 @@ public class HomeActivity extends AppCompatActivity {
     private void addEvents() {
         Intent intent=getIntent();
         name_wl=intent.getStringExtra("nameWL");
+        id_wl=intent.getIntExtra("idWL",-1);
         fabAddTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this, ManHinhGiaoDich.class);
                 intent.putExtra("nameWL",name_wl);
+                intent.putExtra("idWL",id_wl);
                 startActivityForResult(intent,1);
                 Toast.makeText(HomeActivity.this, "Open Add Transaction", Toast.LENGTH_SHORT).show();
             }

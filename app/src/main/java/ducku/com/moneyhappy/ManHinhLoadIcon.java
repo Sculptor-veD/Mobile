@@ -46,13 +46,29 @@ public class ManHinhLoadIcon extends AppCompatActivity {
     private void addControls() {
         gridView=findViewById(R.id.gvhinh);
         dshinh=new ArrayList<>();
-        dshinh.add(R.drawable.chi_phone);dshinh.add(R.drawable.chi_wine);dshinh.add(R.drawable.chi_bank);
-        dshinh.add(R.drawable.chi_browser);dshinh.add(R.drawable.chi_bus);dshinh.add(R.drawable.chi_conversation);
-        dshinh.add(R.drawable.chi_fries);dshinh.add(R.drawable.chi_sick);dshinh.add(R.drawable.chi_taxi);
-        dshinh.add(R.drawable.thu_boss);
-        dshinh.add(R.drawable.thu_satute);
-        dshinh.add(R.drawable.thu_map);
-        dshinh.add(R.drawable.thu_palm);
+       dshinh.add(R.drawable.medal);dshinh.add(R.drawable.football);dshinh.add(R.drawable.crowns);
+        dshinh.add(R.drawable.balance);dshinh.add(R.drawable.weddingcouple);dshinh.add(R.drawable.cake);
+        dshinh.add(R.drawable.cake1);dshinh.add(R.drawable.pumpkin);dshinh.add(R.drawable.birthday);
+       dshinh.add(R.drawable.gifts);dshinh.add(R.drawable.cocktails);dshinh.add(R.drawable.beer);
+        dshinh.add(R.drawable.beer1);dshinh.add(R.drawable.heartbroken);dshinh.add(R.drawable.hotel1);
+        dshinh.add(R.drawable.hotel);dshinh.add(R.drawable.billiard);dshinh.add(R.drawable.billiards);
+       dshinh.add(R.drawable.poker);dshinh.add(R.drawable.dice);dshinh.add(R.drawable.report);
+        dshinh.add(R.drawable.hospital);dshinh.add(R.drawable.hospital1);
+
+        dshinh.add(R.drawable.piggybank);dshinh.add(R.drawable.baker);dshinh.add(R.drawable.settings);
+        dshinh.add(R.drawable.cart);dshinh.add(R.drawable.salary);dshinh.add(R.drawable.diet);
+        dshinh.add(R.drawable.hat);dshinh.add(R.drawable.santaclaus);dshinh.add(R.drawable.father);
+
+        dshinh.add(R.drawable.friendship);dshinh.add(R.drawable.hearts);dshinh.add(R.drawable.heart);
+        dshinh.add(R.drawable.dog);dshinh.add(R.drawable.dog1);dshinh.add(R.drawable.buildings);
+        dshinh.add(R.drawable.house);dshinh.add(R.drawable.shop1);dshinh.add(R.drawable.shop);
+        dshinh.add(R.drawable.hawaii);dshinh.add(R.drawable.eiffeltower);dshinh.add(R.drawable.statueofliberty);
+        dshinh.add(R.drawable.suitcase1);dshinh.add(R.drawable.backpack);dshinh.add(R.drawable.safebox);
+        dshinh.add(R.drawable.aeroplane);dshinh.add(R.drawable.airfreight);dshinh.add(R.drawable.exercise);
+        dshinh.add(R.drawable.gym);dshinh.add(R.drawable.woman);dshinh.add(R.drawable.muscle);
+        dshinh.add(R.drawable.medicine);dshinh.add(R.drawable.pills);dshinh.add(R.drawable.policecar);
+        dshinh.add(R.drawable.policeman);dshinh.add(R.drawable.taxi);dshinh.add(R.drawable.bus1);
+        dshinh.add(R.drawable.bus);dshinh.add(R.drawable.bank);dshinh.add(R.drawable.debitcard);
 
         adapter = new IconAdapter(ManHinhLoadIcon.this,R.layout.custom_gv,dshinh);
 

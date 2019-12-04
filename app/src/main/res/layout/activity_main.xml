@@ -25,10 +25,12 @@
 
         <ImageView
             android:id="@+id/imageView"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/money" />
+            app:srcCompat="@drawable/sickle2" />
     </LinearLayout>
 
     <LinearLayout
