@@ -1,5 +1,6 @@
 package ducku.com.moneyhappy;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -29,6 +30,8 @@ import ducku.com.moneyhappy.model.Category;
 import ducku.com.moneyhappy.model.Preferences;
 
 public class ManHinhNhom extends AppCompatActivity {
+    String name_wl;
+    String name_wl1;
     String userID;
     ImageView imgadd;
     TextView txtNameWl;
@@ -70,10 +73,17 @@ public class ManHinhNhom extends AppCompatActivity {
         userID = Preferences.getUser(this);
 
         Intent intent=getIntent();
-        String name_wl= intent.getStringExtra("NameWallet");
+        name_wl= intent.getStringExtra("NameWallet");
+        name_wl1=intent.getStringExtra("nameWL");
         txtNameWl= findViewById(R.id.txtNameWl);
-        txtNameWl.setText(name_wl);
-
+        if(name_wl1!=null)
+        {
+            name_wl=name_wl1;
+            txtNameWl.setText(name_wl);
+        }
+        else {
+            txtNameWl.setText(name_wl);
+        }
         imgadd= findViewById(R.id.imgAdd);
 
 
@@ -195,7 +205,8 @@ public class ManHinhNhom extends AppCompatActivity {
                 return true;
             case R.id.menuhd:
                 Intent intent3= new Intent(ManHinhNhom.this,HomeActivity.class);
-                startActivity(intent3);
+                intent3.putExtra("nameWL",name_wl);
+                startActivityForResult(intent3,1);
                 break;
             case R.id.menuvi:
                 Intent intent= new Intent(ManHinhNhom.this,ManHinhVi.class);
@@ -215,4 +226,12 @@ public class ManHinhNhom extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1)
+        {
+            txtNameWl.setText(name_wl);
+        }
+    }
 }

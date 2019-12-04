@@ -96,7 +96,8 @@
                 android:id="@+id/imgluunha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/icon_save1" />
+                android:background="@drawable/custom_editext"
+                app:srcCompat="@drawable/iconsave100" />
         </LinearLayout>
     </LinearLayout>
 

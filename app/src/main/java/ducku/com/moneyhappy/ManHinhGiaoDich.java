@@ -53,6 +53,9 @@ public class ManHinhGiaoDich extends AppCompatActivity {
 
         addControls();
         addEvents();
+        Intent intent=getIntent();
+        String namewl=intent.getStringExtra("nameWL");
+        edtWallet.setText(namewl);
     }
 
     private void addEvents() {

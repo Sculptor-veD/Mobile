@@ -84,7 +84,8 @@ public class ManHinhHienThiVi extends AppCompatActivity {
         switch (item.getItemId())
         {
             case android.R.id.home:
-                finish();
+                //finish();
+                onBackPressed();
                 return true;
             case R.id.menu1:
                 //code xử lý khi bấm menu1

@@ -78,6 +78,7 @@ public class ManHinhHienThiChiTietVi extends AppCompatActivity {
         txtsotien.setText(amount+" đ");
 
         imgluunha.setVisibility(View.INVISIBLE);
+        line4.setVisibility(View.INVISIBLE);
 
     }
 
@@ -95,6 +96,7 @@ public class ManHinhHienThiChiTietVi extends AppCompatActivity {
                 return true;
             case R.id.menuedit:
                 imgluunha.setVisibility(View.VISIBLE);
+                line4.setVisibility(View.VISIBLE);
                 editnamenha.setEnabled(true);
                 Toast.makeText(ManHinhHienThiChiTietVi.this,"Bạn đang ở trong trạng thái sửa ví",Toast.LENGTH_LONG).show();
                 break;
