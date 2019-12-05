@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#2E9AFE"
     tools:context=".MainActivity">
 
 
@@ -39,9 +40,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="#FFFFFF"
-        android:orientation="vertical">
-
-        <EditText
+        android:orientation="vertical"
+        >
+       <!-- <EditText
             android:id="@+id/txtSDT"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -58,9 +59,47 @@
             android:textAlignment="inherit"
             android:textColor="#DF0101"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" /> -->
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <EditText
+
+                android:id="@+id/txtSDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="40dp"
+                android:ems="14"
+                android:hint="Nhập số điện thoại" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            app:passwordToggleEnabled="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+
+                android:id="@+id/txtPassword"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:ems="14"
+                android:inputType="textPassword"
+                android:layout_marginLeft="40dp"
+                android:hint="Password" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+       <!-- <EditText
             android:text="123456"
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
@@ -77,7 +116,7 @@
             android:inputType="textPassword"
             android:textColor="#DF0101"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold" />-->
     </LinearLayout>
 
     <LinearLayout
@@ -91,10 +130,11 @@
             android:id="@+id/btnDangNhap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="33dp"
             android:background="@drawable/custombtndangnhap"
-            android:text="Đăng nhập ngay"
+            android:textColor="#FFFFFF"
+            android:text="Login"
             android:textAllCaps="false" />
 
         <TextView
@@ -116,9 +156,13 @@
             android:textColor="#3A4CAF"
             android:textStyle="bold" />
 
+
+
+
     </LinearLayout>
 
     <LinearLayout
+
         android:background="#FFFFFF"
         android:gravity="top|center"
         android:layout_width="match_parent"
@@ -126,22 +170,11 @@
         android:layout_weight="1.15"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:background="@drawable/custombutton_color_white"
-            android:id="@+id/imageButton4"
-            android:outlineSpotShadowColor="#FFFFFF"
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icon_fb" />
+            android:layout_height="wrap_content" />
 
-        <ImageButton
-            android:background="@drawable/custombutton_color_white"
-            android:id="@+id/imageButton5"
-            android:outlineSpotShadowColor="#FFFFFF"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icon_gg" />
     </LinearLayout>
-
 
 </LinearLayout>

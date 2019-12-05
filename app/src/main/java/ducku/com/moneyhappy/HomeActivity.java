@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -126,6 +127,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent2);
                 break;
             case R.id.menudangxuat:
+                LoginManager.getInstance().logOut();
                 Intent intent1= new Intent(HomeActivity.this,ManHinhDangNhap.class);
                 startActivity(intent1);
                 break;

@@ -39,6 +39,8 @@
         android:gravity="center"
         android:orientation="vertical">
 
+
+
         <Button
             android:id="@+id/btnDangNhap"
             android:layout_width="match_parent"
