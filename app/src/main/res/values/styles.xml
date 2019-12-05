@@ -40,7 +40,7 @@
         <!-- android:textColorPrimary: Màu chữ Tiêu đề  -->
         <item name="android:textColorPrimary">#000000</item>
         <!-- actionMenuTextColor: Màu chữ Menu  -->
-        <item name="actionMenuTextColor">@android:color/holo_green_light</item>
+        <item name="actionMenuTextColor">#000000</item>
         <!-- Tints -->
         <item name="colorAccent">#a13636</item>
         <!-- Màu áp dụng cho các View ở trạng thái bình thường -->

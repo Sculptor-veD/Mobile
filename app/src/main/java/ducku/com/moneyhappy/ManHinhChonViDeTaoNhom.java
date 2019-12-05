@@ -50,6 +50,7 @@ public class ManHinhChonViDeTaoNhom extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent= new Intent();
                 intent.putExtra("Name",arrayWallet.get(position).get_name());
+                intent.putExtra("Id",arrayWallet.get(position).get_id());
                 setResult(RESULT_OK,intent);
                 finish();
             }

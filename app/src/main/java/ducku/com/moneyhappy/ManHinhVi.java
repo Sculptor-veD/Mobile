@@ -143,8 +143,7 @@ public class ManHinhVi extends AppCompatActivity {
 
                     tong=tong+amount;
 
-                    txtTong.setText(tong+" đ");
-                    Toast.makeText(ManHinhVi.this,tong+"aaaa",Toast.LENGTH_LONG).show();
+                    txtTong.setText("= "+tong+" vnd");
 
                 }
 

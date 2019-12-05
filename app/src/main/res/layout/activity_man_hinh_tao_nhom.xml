@@ -91,11 +91,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="6"
-                app:srcCompat="@drawable/icon_hanmucchi" />
+                app:srcCompat="@drawable/letter" />
 
             <EditText
                 android:layout_marginLeft="10dp"
                 android:id="@+id/editNhomCha"
+                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -126,7 +127,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Chọn ví: update sau"
+                android:hint="Chọn ví"
                 android:enabled="false"/>
         </LinearLayout>
     </LinearLayout>

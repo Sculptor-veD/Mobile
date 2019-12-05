@@ -17,7 +17,6 @@
 
     <LinearLayout
         android:layout_marginTop="50dp"
-        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -26,6 +25,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#FFFFFF"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -53,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="#FFFFFF"
             android:orientation="vertical">
 
             <TextView
@@ -69,6 +70,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:background="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -96,7 +98,8 @@
                 android:id="@+id/imgluunha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/icon_save1" />
+                android:background="@drawable/custom_editext"
+                app:srcCompat="@drawable/iconsave100" />
         </LinearLayout>
     </LinearLayout>
 

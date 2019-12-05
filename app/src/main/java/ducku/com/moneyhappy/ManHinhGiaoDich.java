@@ -53,6 +53,11 @@ public class ManHinhGiaoDich extends AppCompatActivity {
 
         addControls();
         addEvents();
+        Intent intent=getIntent();
+        String namewl=intent.getStringExtra("nameWL");
+        int idwl=intent.getIntExtra("idWL",-1);
+        Toast.makeText(ManHinhGiaoDich.this,idwl+"",Toast.LENGTH_LONG).show();
+        edtWallet.setText(namewl);
     }
 
     private void addEvents() {
@@ -65,7 +70,7 @@ public class ManHinhGiaoDich extends AppCompatActivity {
                 }
                 else {
                     Intent intent = new Intent(ManHinhGiaoDich.this, ManHinhThuChi.class);
-                    intent.putExtra("idwallet",idWallet+""); //phuoc - them
+                    intent.putExtra("idwallet",idWallet); //phuoc - them
                     startActivityForResult(intent,1);
                 }
             }
