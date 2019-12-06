@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "682081999501",
+    "firebase_url": "https://money-happy-1575616114516.firebaseio.com",
+    "project_id": "money-happy-1575616114516",
+    "storage_bucket": "money-happy-1575616114516.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682081999501:android:292f153926eea40445e0c4",
+        "android_client_info": {
+          "package_name": "ducku.com.moneyhappy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682081999501-h63kmi69m39kq3rf2ti3m8j3jtfamppm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ducku.com.moneyhappy",
+            "certificate_hash": "3562be39d97c9d8199a22baca553a4c01ba830f2"
+          }
+        },
+        {
+          "client_id": "682081999501-eion01md1rat7h5q3huq32fl1k5v4j8u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpROaNhKFvugzIkXg85Ywmsmtap6KVKoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682081999501-eion01md1rat7h5q3huq32fl1k5v4j8u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

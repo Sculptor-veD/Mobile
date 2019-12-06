@@ -138,9 +138,11 @@ public class HomeActivity extends AppCompatActivity {
                 break;
             case R.id.menudangxuat:
                 LoginManager.getInstance().logOut();
+
                 Intent intent1= new Intent(HomeActivity.this,ManHinhDangNhap.class);
                 startActivity(intent1);
                 break;
+
             default:break;
         }
 
