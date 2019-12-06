@@ -47,7 +47,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
     Button btnDangNhap;
     CallbackManager mCallbackManager;
     LoginButton mBtnLoginFacebook;
-    GoogleSignInClient mGoogleSignInClient;
+    static GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -175,7 +175,9 @@ public class ManHinhDangNhap extends AppCompatActivity {
         });
 
     }
-
+    public static void logoutgg(){
+        mGoogleSignInClient.signOut();
+    }
     private void addControls() {
         txtSDT=findViewById(R.id.txtSDT);
 
