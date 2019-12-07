@@ -70,7 +70,10 @@ public class TransactionFragment extends Fragment {
         String url= "act=gettransaction&account_id="+userId+"&month="+month+"&year="+year;
         Log.e("URL", url);
 
-        //transactionList = new ArrayList<>();
+        if(!transactionList.isEmpty()) {
+            transactionList = new ArrayList<>();
+        }
+
         new GetTransaction().execute(url);
         // change data to display on view
 //        adapter.notifyDataSetChanged();
