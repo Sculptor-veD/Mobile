@@ -56,6 +56,11 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         }
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvNameCategory;
         TextView tvDescription;

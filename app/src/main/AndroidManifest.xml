@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Money Manager"
@@ -13,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ManHinhLoadIcon">
-        </activity>
+        <activity android:name=".ViewReport"></activity>
+        <activity android:name=".ManHinhLoadIcon"></activity>
         <activity android:name=".ManHinhHienThiChiTietVi" />
         <activity android:name=".ManHinhThemVi" />
         <activity android:name=".ManHinhHienThiVi" />
@@ -23,37 +22,48 @@
         <activity android:name=".ManHinhSuaCategory" />
         <activity android:name=".ManHinhHienThiGiaoDich" />
         <activity android:name=".ManHinhLoadNhomCha" />
-        <activity android:name=".ManHinhHienThiChiTietNhom">
-
-        </activity>
+        <activity android:name=".ManHinhHienThiChiTietNhom"></activity>
         <activity android:name=".ManHinhChonViDeTaoNhom" />
-        <activity android:name=".ManHinhTaoNhom" >
-        </activity>
-        <activity android:name=".ManHinhVi" >
-
-        </activity>
-        <activity android:name=".ManHinhNhom">
-        </activity>
-        <activity android:name=".ManHinhThuChi" >
-        </activity>
+        <activity android:name=".ManHinhTaoNhom"></activity>
+        <activity android:name=".ManHinhVi"></activity>
+        <activity android:name=".ManHinhNhom"></activity>
+        <activity android:name=".ManHinhThuChi"></activity>
         <activity android:name=".LoadWalletActivity" />
         <activity android:name=".LoadCategoryActivity" />
-        <activity android:name=".ManHinhGiaoDich">
-
-        </activity>
+        <activity android:name=".ManHinhGiaoDich"></activity>
         <activity android:name=".ManHinhDoiMatKhau" />
         <activity android:name=".ManHinhTaoVi" />
         <activity android:name=".ManHinhDangKy" />
         <activity android:name=".ManHinhDangNhap" />
-
         <activity android:name=".api" />
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/> <activity android:name="com.facebook.FacebookActivity" android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" /> <activity android:name="com.facebook.CustomTabActivity" android:exported="true"> <intent-filter> <action android:name="android.intent.action.VIEW" /> <category android:name="android.intent.category.DEFAULT" /> <category android:name="android.intent.category.BROWSABLE" /> <data android:scheme="@string/fb_login_protocol_scheme" /> </intent-filter> </activity>
 
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
     </application>
+
 </manifest>

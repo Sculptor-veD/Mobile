@@ -1,13 +1,17 @@
 package ducku.com.moneyhappy;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,6 +60,20 @@ public class TransactionFragment extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.transaction_fragment, null);
 
         RecyclerView rvTransaction = view.findViewById(R.id.rvTransaction);
+        CardView cardView = view.findViewById(R.id.clickViewReport);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!transactionList.isEmpty()) {
+                    // Handler here
+                    Toast.makeText(getContext(), month+"/"+year+" isDATA", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(getContext(), ViewReport.class);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(getContext(), month+"/"+year+" KHÔNG CÓ DỮ LIỆU", Toast.LENGTH_SHORT).show();
+            }
+        });
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         adapter = new TransactionAdapter(getContext(), transactionList);
         rvTransaction.setLayoutManager(layoutManager);

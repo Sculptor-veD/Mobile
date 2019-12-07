@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="4dp"
+    app:cardCornerRadius="5dp">
+
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/panelTransactionCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp">
+
+                <TextView
+                    android:id="@+id/tongquan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/tvPrice"
+                    android:layout_toLeftOf="@+id/tvPrice"
+                    android:layout_toEndOf="@+id/ivThumbnailCategory"
+                    android:layout_toRightOf="@+id/ivThumbnailCategory"
+                    android:lines="1"
+                    android:text="Tổng quan"
+                    android:textColor="#000000"
+                    android:textSize="22sp"
+                    android:layout_marginLeft="8dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tongquan"
+                    android:layout_toStartOf="@+id/tvPrice"
+                    android:layout_toLeftOf="@+id/tvPrice"
+                    android:layout_toEndOf="@+id/ivThumbnailCategory"
+                    android:layout_toRightOf="@+id/ivThumbnailCategory"
+                    android:ellipsize="end"
+                    android:layout_marginLeft="8dp"
+                    android:lines="1"
+                    android:text="Chạm để xem báo cáo đầy dủ" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bulkhead"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/panelTransactionCategory"
+                android:background="#e8dede"
+                android:layout_marginLeft="8dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_below="@id/bulkhead">
+
+                <TextView
+                    android:id="@+id/tienvao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="2dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="Tiền vào"
+                    android:textColor="#353535"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/value_tienvao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:padding="2dp"
+                    android:layout_marginRight="8dp"
+                    android:text="000đ"
+                    android:textColor="#2196F3"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tienra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tienvao"
+                    android:padding="2dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="Tiền ra"
+                    android:textColor="#353535"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/value_tienra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/value_tienvao"
+                    android:layout_alignParentRight="true"
+                    android:padding="2dp"
+                    android:layout_marginRight="8dp"
+                    android:text="000đ"
+                    android:textColor="#E91E63"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+
+                <RelativeLayout
+                    android:id="@+id/bulkhead2"
+                    android:layout_width="150dp"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_below="@id/value_tienra"
+                    android:layout_alignParentRight="true"
+                    android:background="#f2eded" />
+
+                <TextView
+                    android:id="@+id/tongcong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/bulkhead2"
+                    android:layout_alignParentRight="true"
+                    android:padding="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="000đ"
+                    android:textColor="#353535"
+                    android:textSize="16sp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
