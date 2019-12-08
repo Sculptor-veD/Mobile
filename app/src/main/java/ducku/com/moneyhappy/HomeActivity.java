@@ -42,7 +42,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar tb8 = findViewById(R.id.tb8);
         setSupportActionBar(tb8);
-        setTitle("Giao dịch Demo");
+        setTitle("Hiển thị các giao dịch");
 
         bindView();
 
