@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="4dp"
+    app:cardCornerRadius="5dp">
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/ivThumbnailCategory"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_plus" />
+            <TextView
+                android:id="@+id/tvNameCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/ivThumbnailCategory"
+                android:padding="19dp"
+                android:text="Ăn tối"
+                android:textColor="#353535"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:padding="21dp"
+                android:text="000đ"
+                android:textColor="#2196F3"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
