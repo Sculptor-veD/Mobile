@@ -40,7 +40,7 @@ public class ManHinhGiaoDich extends AppCompatActivity {
 
     EditText edtMoney, edtDescript, edtCalendar;
 
-    int idCategory, idImgCategory, idWallet, idImgWallet, typeCategory;
+    int idCategory, idImgCategory, idWallet, idImgWallet, typeCategory,idwl;
     String nameCategory, nameWallet;
 
     // btn save
@@ -55,7 +55,7 @@ public class ManHinhGiaoDich extends AppCompatActivity {
         addEvents();
         Intent intent=getIntent();
         String namewl=intent.getStringExtra("nameWL");
-        int idwl=intent.getIntExtra("idWL",-1);
+        idwl=intent.getIntExtra("idWL",-1);
         Toast.makeText(ManHinhGiaoDich.this,idwl+"",Toast.LENGTH_LONG).show();
         edtWallet.setText(namewl);
     }
@@ -88,7 +88,7 @@ public class ManHinhGiaoDich extends AppCompatActivity {
         convertBtnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(edtCalendar.getText().toString().isEmpty() || edtMoney.getText().toString().isEmpty() || txtIdCategory.getText().toString().isEmpty() || txtIdWallet.getText().toString().isEmpty()) {
+                if(edtCalendar.getText().toString().isEmpty() || edtMoney.getText().toString().isEmpty() || txtIdCategory.getText().toString().isEmpty() || edtWallet.getText().toString().isEmpty()) {
                     // Show notify here
                     Toast.makeText(ManHinhGiaoDich.this, "Chọn danh mục, Ví và Ko để trống trường ...", Toast.LENGTH_SHORT).show();
                 }
@@ -98,10 +98,13 @@ public class ManHinhGiaoDich extends AppCompatActivity {
                     String descript = edtDescript.getText().toString();
                     String created = edtCalendar.getText().toString();
                     String monney = edtMoney.getText().toString();
-                    String url = "act=save_transaction&wallet_id="+idWallet+"&category_id="+idCategory+"&descript="+descript+"&created="+created+"&amount="+monney+"&type="+typeCategory+"&iduser="+iduser;
-                    url = url.replace(" ", "%20");
-                    Log.e("URL: " , url);
-                    new SaveTransaction().execute(url);
+                    if(idwl>0) {
+                        idWallet=idwl;
+                        String url = "act=save_transaction&wallet_id=" + idWallet + "&category_id=" + idCategory + "&descript=" + descript + "&created=" + created + "&amount=" + monney + "&type=" + typeCategory + "&iduser=" + iduser;
+                        url = url.replace(" ", "%20");
+                        Log.e("URL: ", url);
+                        new SaveTransaction().execute(url);
+                    }
                 }
             }
         });

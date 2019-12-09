@@ -38,7 +38,7 @@ public class ItemReportAdapter extends RecyclerView.Adapter<ItemReportAdapter.Vi
 
         // display info to item view holder
         viewHolder.tvNameCategory.setText(itemReport.get_name());
-        viewHolder.tvAmount.setText(String.valueOf(itemReport.get_amount()) + " đ");
+        viewHolder.tvAmount.setText(String.valueOf(itemReport.get_amount()) + " vnđ");
         viewHolder.ivThumbnailCategory.setImageResource(itemReport.get_img());
     }
 

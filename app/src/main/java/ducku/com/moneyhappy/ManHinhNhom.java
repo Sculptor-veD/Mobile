@@ -66,8 +66,10 @@ public class ManHinhNhom extends AppCompatActivity {
         Toolbar tb2 = findViewById(R.id.toolbar2);
         setSupportActionBar(tb2);
         setTitle("Nhóm");
-        new GetCategoryChi().execute("act=getcategory&iduser="+userID+"&type=0");
-        new GetCategoryThu().execute("act=getcategory&iduser="+userID+"&type=1");
+
+        new GetCategoryChi().execute("act=getcategory&iduser=" + userID + "&type=0");
+        new GetCategoryThu().execute("act=getcategory&iduser=" + userID + "&type=1");
+
     }
 
     private void addControls() {
