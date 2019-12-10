@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="mauden">#111111</color>
+    <color name="startblue">#00b5e7</color>
+
+    <color name="endblue">#00b5e7</color>
+
 </resources>

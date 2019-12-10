@@ -19,6 +19,10 @@
         android:title="Đăng xuất"
         app:showAsAction="collapseActionView" />
     <item
+        android:id="@+id/menuhoso"
+        android:title="Hồ sơ "
+        app:showAsAction="collapseActionView" />
+    <item
         android:id="@+id/menu5"
         android:title="..."
         app:showAsAction="collapseActionView" />

@@ -18,11 +18,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.LoginStatusCallback;
+import com.facebook.login.Login;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -36,18 +40,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Arrays;
 
 import ducku.com.moneyhappy.model.Preferences;
 
 public class ManHinhDangNhap extends AppCompatActivity {
-
     EditText txtSDT, txtPassword;
-    TextView twMsg, txtdoimatkhau, txtUserId,txtAuthToken;
+    TextView twMsg, txtdoimatkhau, txtUserId, txtAuthToken;
     Button btnDangNhap;
     CallbackManager mCallbackManager;
     LoginButton mBtnLoginFacebook;
     static GoogleSignInClient mGoogleSignInClient;
+    String getIDFB;
+    AccessTokenTracker accessTokenTracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -57,13 +64,24 @@ public class ManHinhDangNhap extends AppCompatActivity {
         txtUserId = (TextView) findViewById(R.id.txtSDT);
         txtAuthToken = (TextView) findViewById(R.id.txtPassword);
         mBtnLoginFacebook = (LoginButton) findViewById(R.id.login_button);
-        mBtnLoginFacebook.setPermissions(Arrays.asList("public_profile","email"));
+
+        loginFB();
+        loginGoogle();
+        addControls();
+        addEvent();
+
+        Toolbar tb21 = findViewById(R.id.tb21);
+        setSupportActionBar(tb21);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle("Đăng nhập");
+    }
+
+    void loginFB() {
+        mBtnLoginFacebook.setPermissions(Arrays.asList("public_profile", "email"));
         mBtnLoginFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                txtUserId.setText("User ID: " + loginResult.getAccessToken().getUserId() );
                 result();
-
             }
 
             @Override
@@ -75,37 +93,40 @@ public class ManHinhDangNhap extends AppCompatActivity {
             public void onError(FacebookException e) {
                 txtUserId.setText("Login failed.");
             }
-        });
-        loginGoogle();
-        addControls();
-        addEvent();
 
-        Toolbar tb21 = findViewById(R.id.tb21);
-        setSupportActionBar(tb21);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("Đăng nhập");
-    }
+        });
+
+            }
+
+
+
     private void result(){
         GraphRequest request = GraphRequest.newMeRequest(
                 AccessToken.getCurrentAccessToken(),new GraphRequest.GraphJSONObjectCallback() {
+
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         Log.d("JSON",response.getJSONObject().toString());
                         try {
-                            String email = object.getString("email");
-                            String name = object.getString("name");
+                             getIDFB = object.getString("id");
+                                Toast.makeText(ManHinhDangNhap.this,getIDFB,Toast.LENGTH_LONG);
+                               // if(getIDFB.length() > 0)
+                                     new LoginMXHFB().execute("act=load_socialnetwork&socialnetwork_name=facebook&socialnetwork_id="+getIDFB);
+
+
                         }catch (JSONException e )
                         {
                             e.printStackTrace();
                         }
-                        Intent intent = new Intent(ManHinhDangNhap.this, HomeActivity.class);
-                        startActivity(intent);
+                        /*Intent intent = new Intent(ManHinhDangNhap.this, HomeActivity.class);
+                        startActivity(intent);*/
                     }
                 });
         Bundle parameters = new Bundle();
         parameters.putString("fields", "id,name,email");
         request.setParameters(parameters);
         request.executeAsync();    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -117,19 +138,23 @@ public class ManHinhDangNhap extends AppCompatActivity {
             handleSignInResult(task);
         }
     }
+
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            txtUserId.setText(account.getId().toString());
-            Log.d("TEST","abcdscad");
-            // Signed in successfully, show authenticated UI.
+           // txtUserId.setText(account.getId().toString());
+            String getID = account.getId().toString();
+            new LoginMXH().execute("act=load_socialnetwork&socialnetwork_name=google&socialnetwork_id="+getID);
+            if(txtPassword.getText().toString().equals("***"))
+            {
+             new SigninMXH().execute("act=new_socialnetwork&socialnetwork_name=google&socialnetwork_id="+getID+"&user_id=new_user");
+            }
 
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("Success", "signInResult:failed code=" + e.getStatusCode());
         }
-
     }
      void loginGoogle(){
         // Configure sign-in to request the user's ID, email address, and basic
@@ -145,7 +170,6 @@ public class ManHinhDangNhap extends AppCompatActivity {
             public void onClick(View v) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, 001);
-                Log.d("OK", "abc");
             }
         });
         /* findViewById(R.id.log_button).setOnClickListener(new View.OnClickListener() {
@@ -155,6 +179,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
              }
          });*/
      }
+
     private void addEvent() {
 
         btnDangNhap.setOnClickListener(new View.OnClickListener() {
@@ -192,7 +217,75 @@ public class ManHinhDangNhap extends AppCompatActivity {
 
 
     }
+    private class SigninMXH extends api {
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject jsonObject = new JSONObject(s);
 
+                if(jsonObject.getString("result").equals("true"))
+                {
+                    Intent intent = new Intent(ManHinhDangNhap.this, HomeActivity.class);
+                    startActivity(intent);
+                }
+                else{
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private class LoginMXH extends  api{
+        @Override
+        protected void onPostExecute(String s) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(s);
+                String jsonid  = jsonObject.getString("user_id");
+                if(jsonid.equals("0"))
+                {
+                    txtPassword.setText("***");
+                }
+                else{
+                    txtSDT.setText("Login Success with ID" + jsonid);
+                    Preferences.saveUser(ManHinhDangNhap.this, jsonid);
+
+                    Intent intent = new Intent(ManHinhDangNhap.this, HomeActivity.class);
+                    startActivity(intent);
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private class LoginMXHFB extends  api{
+        @Override
+        protected void onPostExecute(String s) {
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(s);
+                String jsonid  = jsonObject.getString("user_id");
+                if(jsonid.equals("0"))
+                {
+                    txtPassword.setText("***");
+                    new SigninMXH().execute("act=new_socialnetwork&socialnetwork_name=facebook&socialnetwork_id="+getIDFB+"&user_id=new_user");
+                }
+                else{
+                    txtSDT.setText("Login Success with ID" + jsonid);
+                    Preferences.saveUser(ManHinhDangNhap.this, jsonid);
+                    Intent intent = new Intent(ManHinhDangNhap.this, HomeActivity.class);
+                    startActivity(intent);
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     private class GoiDangNhap extends api {
         @Override
         protected void onPostExecute(String s) {

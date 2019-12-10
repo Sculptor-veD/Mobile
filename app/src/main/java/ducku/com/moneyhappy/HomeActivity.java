@@ -23,6 +23,7 @@ import java.util.List;
 
 import ducku.com.moneyhappy.adapter.PageTransactionAdapter;
 import ducku.com.moneyhappy.adapter.TransactionAdapter;
+import ducku.com.moneyhappy.model.Preferences;
 import ducku.com.moneyhappy.model.Transaction;
 
 public class HomeActivity extends AppCompatActivity {
@@ -42,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar tb8 = findViewById(R.id.tb8);
         setSupportActionBar(tb8);
-        setTitle("Hiển thị các giao dịch");
+        setTitle("Giao dịch Demo");
 
         bindView();
 
@@ -139,6 +140,7 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.menudangxuat:
                 LoginManager.getInstance().logOut();
                 ManHinhDangNhap.logoutgg();
+                Preferences.saveUser(HomeActivity.this, null);
                 Intent intent1= new Intent(HomeActivity.this,ManHinhDangNhap.class);
                 startActivity(intent1);
                 break;
