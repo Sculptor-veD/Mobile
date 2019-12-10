@@ -7,20 +7,22 @@
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="405dp">
+        android:layout_height="340dp">
         <LinearLayout
             android:background="@drawable/gradientbackground"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-            <ImageView
+            <com.facebook.login.widget.ProfilePictureView
                 android:layout_marginTop="45dp"
+                android:id="@+id/imagefb"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:src="@drawable/baker"/>
             <TextView
                 android:layout_marginTop="10dp"
+                android:id="@+id/namefb"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,7 +33,7 @@
         </LinearLayout>
         <androidx.cardview.widget.CardView
             android:layout_width="400dp"
-            android:layout_height="120dp"
+            android:layout_height="80dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="275dp">
             <LinearLayout
@@ -48,13 +50,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Photos"
+                        android:text="Tiền chi "
                         android:textSize="20sp"
                         />
                     <TextView
+                        android:id="@+id/tienchi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="125"
+                        android:text="100"
                         android:textStyle="bold"
                         android:textSize="20sp"
                         android:paddingTop="10dp"
@@ -70,10 +73,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Followers"
+                        android:text="Tổng tiền"
                         android:textSize="20sp"
                         />
                     <TextView
+                        android:id="@+id/tongtien"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1205"
@@ -92,10 +96,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Following"
+                        android:text="Tiền thu "
                         android:textSize="20sp"
                         />
                     <TextView
+                        android:id="@+id/tienthu"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="360"
@@ -109,13 +115,12 @@
 
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
-
     <LinearLayout
         android:layout_width="360dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="45dp">
+        android:layout_marginTop="5dp">
         <LinearLayout
             android:orientation="horizontal"
             android:paddingLeft="25dp"
@@ -125,14 +130,22 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/emailblack"/>
-            <TextView
+            <EditText
                 android:id="@+id/txtemail"
                 android:textStyle="bold"
                 android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="Wiliam@gmail.com"/>
+                android:text="Wiliam@gmail.com"
+                android:enabled="false"
+                />
+            <ImageView
+                android:id="@+id/fix1"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/editable"
+                android:layout_marginLeft="60dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="25dp"
@@ -144,14 +157,21 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/phoneblack"/>
-            <TextView
+            <EditText
                 android:textStyle="bold"
                 android:id="@+id/txtphone"
                 android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="+266 225 225"/>
+                android:text="+266 225 225"
+                android:enabled="false"/>
+            <ImageView
+                android:id="@+id/fix2"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/editable"
+                android:layout_marginLeft="60dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="25dp"
@@ -164,25 +184,59 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:src="@drawable/personblack" />
-            <TextView
+            <EditText
                 android:textStyle="bold"
                 android:id="@+id/txtusername"
                 android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="UserName"/>
+                android:text="UserName"
+                android:enabled="false"/>
+            <ImageView
+                android:id="@+id/fix3"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/editable"
+                android:layout_marginLeft="60dp"/>
+
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+           <!-- <EditText
+                android:id="@+id/fixitem"
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:selectAllOnFocus="false"
+                android:singleLine="false"
+                android:textStyle="bold"
+                android:background="#00000000"
+                /> -->
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonsave"
+            android:textColor="#fff"
+            android:background="@drawable/custom_button"
+            android:layout_marginBottom="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Save"
+            android:visibility="invisible"
+            android:clickable="false"
+            />
     </LinearLayout>
 
-    <!--<Button
-        android:textColor="#fff"
-        android:background="@drawable/custom_button"
-        android:layout_marginTop="35dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Follow Me"/>-->
 
 </LinearLayout>

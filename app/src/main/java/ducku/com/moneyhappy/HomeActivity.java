@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar tb8 = findViewById(R.id.tb8);
         setSupportActionBar(tb8);
-        setTitle("Giao dịch Demo");
+        setTitle("Giao dịch ");
 
         bindView();
 
@@ -140,11 +142,17 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.menudangxuat:
                 LoginManager.getInstance().logOut();
                 ManHinhDangNhap.logoutgg();
-                Preferences.saveUser(HomeActivity.this, null);
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("jsonid", null);
+                editor.commit();
                 Intent intent1= new Intent(HomeActivity.this,ManHinhDangNhap.class);
                 startActivity(intent1);
                 break;
-
+            case R.id.menuhoso:
+                Intent intent3= new Intent(HomeActivity.this,ManHinhHoSo.class);
+                startActivity(intent3);
+                break;
             default:break;
         }
 

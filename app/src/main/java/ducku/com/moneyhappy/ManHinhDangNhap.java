@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -60,10 +61,16 @@ public class ManHinhDangNhap extends AppCompatActivity {
     CallbackManager mCallbackManager;
     LoginButton mBtnLoginFacebook;
     static GoogleSignInClient mGoogleSignInClient;
-    String getIDFB,getID,linkhinhfb;
-    ProfilePictureView profilePictureView;
+    String getIDFB,getID,linkhinhfb,getfbname;
     ImageView imageView3;
     AccessTokenTracker accessTokenTracker;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LoginManager.getInstance().logOut();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -89,12 +96,15 @@ public class ManHinhDangNhap extends AppCompatActivity {
         mBtnLoginFacebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+
                 result();
+                Toast.makeText(ManHinhDangNhap.this,"Login success",Toast.LENGTH_LONG).show();
+
             }
 
             @Override
             public void onCancel() {
-                txtUserId.setText("Login canceled.");
+                Toast.makeText(ManHinhDangNhap.this,"Login canceled",Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -118,12 +128,16 @@ public class ManHinhDangNhap extends AppCompatActivity {
                         try {
                              getIDFB = object.getString("id");
                              linkhinhfb = object.getString("picture");
+                             getfbname = object.getString("name");
                             // set profilePic bit
                                // if(getIDFB.length() > 0)
                                      new LoginMXHFB().execute("act=load_socialnetwork&socialnetwork_name=facebook&socialnetwork_id="+getIDFB);
-                         //   Picasso.get().load("https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2236450413123258&height=200&width=200&ext=1578543738&hash=AeStnH9kdK19LSXI").into(imageView3);
-                       // profilePictureView.setProfileId(Profile.getCurrentProfile().getId());
-
+                   //   profilePictureView.setProfileId(Profile.getCurrentProfile().getId());
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ManHinhDangNhap.this);
+                            SharedPreferences.Editor editor = prefs.edit();
+                            editor.putString("fbid", getIDFB);
+                            editor.putString("fbname",getfbname);
+                            editor.commit();
 
 
                         }catch (JSONException e )
@@ -168,6 +182,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
             Log.w("Success", "signInResult:failed code=" + e.getStatusCode());
         }
     }
+
      void loginGoogle(){
         // Configure sign-in to request the user's ID, email address, and basic
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -212,6 +227,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
         });
 
     }
+
     public static void logoutgg(){
         mGoogleSignInClient.signOut();
     }

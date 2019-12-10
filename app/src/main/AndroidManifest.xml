@@ -35,6 +35,7 @@
         <activity android:name=".ManHinhTaoVi" />
         <activity android:name=".ManHinhDangKy" />
         <activity android:name=".ManHinhDangNhap" />
+        <activity android:name=".ManHinhHoSo"/>
         <activity android:name=".api" />
         <activity android:name=".MainActivity">
             <intent-filter>
