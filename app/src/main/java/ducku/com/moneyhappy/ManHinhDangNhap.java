@@ -3,6 +3,9 @@ package ducku.com.moneyhappy;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,10 +29,12 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.LoginStatusCallback;
+import com.facebook.Profile;
 import com.facebook.login.Login;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.facebook.login.widget.ProfilePictureView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -40,6 +46,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
@@ -53,7 +60,9 @@ public class ManHinhDangNhap extends AppCompatActivity {
     CallbackManager mCallbackManager;
     LoginButton mBtnLoginFacebook;
     static GoogleSignInClient mGoogleSignInClient;
-    String getIDFB,getID;
+    String getIDFB,getID,linkhinhfb;
+    ProfilePictureView profilePictureView;
+    ImageView imageView3;
     AccessTokenTracker accessTokenTracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +73,6 @@ public class ManHinhDangNhap extends AppCompatActivity {
         txtUserId = (TextView) findViewById(R.id.txtSDT);
         txtAuthToken = (TextView) findViewById(R.id.txtPassword);
         mBtnLoginFacebook = (LoginButton) findViewById(R.id.login_button);
-
         loginFB();
         loginGoogle();
         addControls();
@@ -109,9 +117,13 @@ public class ManHinhDangNhap extends AppCompatActivity {
                         Log.d("JSON",response.getJSONObject().toString());
                         try {
                              getIDFB = object.getString("id");
-                                Toast.makeText(ManHinhDangNhap.this,getIDFB,Toast.LENGTH_LONG);
+                             linkhinhfb = object.getString("picture");
+                            // set profilePic bit
                                // if(getIDFB.length() > 0)
                                      new LoginMXHFB().execute("act=load_socialnetwork&socialnetwork_name=facebook&socialnetwork_id="+getIDFB);
+                         //   Picasso.get().load("https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2236450413123258&height=200&width=200&ext=1578543738&hash=AeStnH9kdK19LSXI").into(imageView3);
+                       // profilePictureView.setProfileId(Profile.getCurrentProfile().getId());
+
 
 
                         }catch (JSONException e )
@@ -123,7 +135,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
                     }
                 });
         Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,name,email");
+        parameters.putString("fields", "id,name,email,picture.type(large)");
         request.setParameters(parameters);
         request.executeAsync();    }
 
