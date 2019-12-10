@@ -53,7 +53,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
     CallbackManager mCallbackManager;
     LoginButton mBtnLoginFacebook;
     static GoogleSignInClient mGoogleSignInClient;
-    String getIDFB;
+    String getIDFB,getID;
     AccessTokenTracker accessTokenTracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,12 +143,12 @@ public class ManHinhDangNhap extends AppCompatActivity {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
            // txtUserId.setText(account.getId().toString());
-            String getID = account.getId().toString();
+             getID = account.getId().toString();
             new LoginMXH().execute("act=load_socialnetwork&socialnetwork_name=google&socialnetwork_id="+getID);
-            if(txtPassword.getText().toString().equals("***"))
+           /* if(txtPassword.getText().toString().equals("***"))
             {
              new SigninMXH().execute("act=new_socialnetwork&socialnetwork_name=google&socialnetwork_id="+getID+"&user_id=new_user");
-            }
+            }*/
 
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -247,7 +247,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
                 String jsonid  = jsonObject.getString("user_id");
                 if(jsonid.equals("0"))
                 {
-                    txtPassword.setText("***");
+                    new SigninMXH().execute("act=new_socialnetwork&socialnetwork_name=google&socialnetwork_id="+getID+"&user_id=new_user");
                 }
                 else{
                     txtSDT.setText("Login Success with ID" + jsonid);

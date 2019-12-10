@@ -107,7 +107,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-        </>
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
     <LinearLayout
@@ -126,6 +126,7 @@
                 android:layout_height="36dp"
                 android:src="@drawable/emailblack"/>
             <TextView
+                android:id="@+id/txtemail"
                 android:textStyle="bold"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
@@ -145,7 +146,7 @@
                 android:src="@drawable/phoneblack"/>
             <TextView
                 android:textStyle="bold"
-
+                android:id="@+id/txtphone"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -165,7 +166,7 @@
                 android:src="@drawable/personblack" />
             <TextView
                 android:textStyle="bold"
-
+                android:id="@+id/txtusername"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
