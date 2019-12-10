@@ -98,13 +98,15 @@ public class ManHinhGiaoDich extends AppCompatActivity {
                     String descript = edtDescript.getText().toString();
                     String created = edtCalendar.getText().toString();
                     String monney = edtMoney.getText().toString();
+
                     if(idwl>0) {
                         idWallet=idwl;
-                        String url = "act=save_transaction&wallet_id=" + idWallet + "&category_id=" + idCategory + "&descript=" + descript + "&created=" + created + "&amount=" + monney + "&type=" + typeCategory + "&iduser=" + iduser;
-                        url = url.replace(" ", "%20");
-                        Log.e("URL: ", url);
-                        new SaveTransaction().execute(url);
                     }
+
+                    String url = "act=save_transaction&wallet_id=" + idWallet + "&category_id=" + idCategory + "&descript=" + descript + "&created=" + created + "&amount=" + monney + "&type=" + typeCategory + "&iduser=" + iduser;
+                    url = url.replace(" ", "%20");
+                    Log.e("URL: ", url);
+                    new SaveTransaction().execute(url);
                 }
             }
         });
