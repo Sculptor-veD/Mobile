@@ -51,6 +51,8 @@ public class api extends AsyncTask<String, String, String> {
 
                 String token = Preferences.getToken(getApplicationContext());
                 String client = Preferences.getClientId(getApplicationContext());
+                if(client.length() < 32)
+                    client = Preferences.getClientId(getApplicationContext());
 
                 url = new URL("http://vietsever.tk/index.php?"+"client="+client+"&token="+token+"&"+params[0]);
                 Log.e("URL=", url.toString());
