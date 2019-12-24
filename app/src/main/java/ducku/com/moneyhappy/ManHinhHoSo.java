@@ -146,7 +146,7 @@ public class ManHinhHoSo extends AppCompatActivity {
                 jsonObject = new JSONObject(s);
                 String total = jsonObject.getString("TotalMoney");
                // textView1.setText(jsonObject.getString("TotalSpend").toString());
-                textView1.setText("8787");
+                textView1.setText(jsonObject.getString("TotalSpend").toString());
                 textView3.setText(jsonObject.getString("TotalCollection").toString());
                 textView2.setText(jsonObject.getString("TotalMoney").toString());
             } catch (JSONException e) {
