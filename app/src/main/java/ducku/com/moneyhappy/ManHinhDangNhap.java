@@ -326,7 +326,10 @@ public class ManHinhDangNhap extends AppCompatActivity {
                 String token = obj.getString("token");
                 if(accountId.equals("false")){
                     //bla bla
-                    twMsg.setText("Thong tin khong chinh xac");
+                    twMsg.setText("Thông tin tài khoản không chính xác");
+                }else if(accountId.equals("disable")){
+                    //bla bla
+                    twMsg.setText("Tài khoản của bạn đã bị khóa do vi phạm.");
                 } else {
                     //bla bla
                     twMsg.setText("Dang nhap thanh cong");
