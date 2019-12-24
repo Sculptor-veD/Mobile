@@ -50,7 +50,9 @@ public class api extends AsyncTask<String, String, String> {
                     params[0] = "";
 
                 String token = Preferences.getToken(getApplicationContext());
-                url = new URL("http://vietsever.tk/index.php?"+"token="+token+"&"+params[0]);
+                String client = Preferences.getClientId(getApplicationContext());
+
+                url = new URL("http://vietsever.tk/index.php?"+"client="+client+"&token="+token+"&"+params[0]);
                 Log.e("URL=", url.toString());
 
             } catch (MalformedURLException e) {
