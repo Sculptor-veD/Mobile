@@ -93,7 +93,8 @@ public class TransactionFragment extends Fragment {
 
     private void loadData() {
         String userId = Preferences.getUser(getContext());
-        String url= "act=gettransaction&account_id="+userId+"&month="+month+"&year="+year;
+        String token = Preferences.getToken(getContext());
+        String url= "act=gettransaction&account_id="+userId+"&month="+month+"&year="+year+"&token="+token;
         Log.e("URL", url);
 
         if(!transactionList.isEmpty()) {

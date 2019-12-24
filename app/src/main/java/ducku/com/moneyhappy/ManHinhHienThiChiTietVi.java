@@ -49,7 +49,9 @@ public class ManHinhHienThiChiTietVi extends AppCompatActivity {
                 Toast.makeText(ManHinhHienThiChiTietVi.this, "Tên không được để trống", Toast.LENGTH_SHORT).show();
             }
             else {
-                String url = "act=update_wallet&name="+nameWL+"&id="+id_wl;
+                String account_id = Preferences.getUser(getBaseContext());
+                String token = Preferences.getToken(getBaseContext());
+                String url = "act=update_wallet&name="+nameWL+"&id="+id_wl+"&account_id="+account_id+"&token="+token;
                 url = url.replace(" ", "%20");
                 new api().execute(url);
                 Toast.makeText(ManHinhHienThiChiTietVi.this, "Save Successfully!", Toast.LENGTH_SHORT).show();
@@ -101,7 +103,9 @@ public class ManHinhHienThiChiTietVi extends AppCompatActivity {
                 Toast.makeText(ManHinhHienThiChiTietVi.this,"Bạn đang ở trong trạng thái sửa ví",Toast.LENGTH_LONG).show();
                 break;
             case R.id.menudelete:
-                new DeleteWallet().execute("act=delete_wallet&id="+id_wl);
+                String account_id = Preferences.getUser(getBaseContext());
+                String token = Preferences.getToken(getBaseContext());
+                new DeleteWallet().execute("act=delete_wallet&id="+id_wl+"&account_id="+account_id+"&token="+token);
                 break;
             default:break;
         }

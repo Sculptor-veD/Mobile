@@ -22,7 +22,8 @@ public class ManHinhThemVi extends AppCompatActivity {
     private static String beforeActivity;
     EditText editWalletName;
     EditText editWalletAmount;
-    String iduser;
+    String account_id;
+    String token;
 
     public static String getBeforActivity(){
         return beforeActivity;
@@ -49,7 +50,8 @@ public class ManHinhThemVi extends AppCompatActivity {
     private void addControls() {
         editWalletName = (EditText) findViewById(R.id.editNameWallet);
         editWalletAmount = (EditText) findViewById(R.id.editWalletAmount);
-        iduser = Preferences.getUser(ManHinhThemVi.this);
+        account_id = Preferences.getUser(this);
+        token = Preferences.getToken(this);
 
         Intent intent = getIntent();
         beforeActivity =  intent.getStringExtra("activityBefore");
@@ -83,7 +85,7 @@ public class ManHinhThemVi extends AppCompatActivity {
             Toast.makeText(ManHinhThemVi.this, "Nhập số tiền!", Toast.LENGTH_SHORT).show();
         }
         else{
-            String url = "act=save_wallet&wallet_name="+nameWallet+"&wallet_amount="+amount+"&iduser="+iduser;
+            String url = "act=save_wallet&wallet_name="+nameWallet+"&wallet_amount="+amount+"&account_id="+account_id+"&token="+token;
             url=url.replace(" ", "%20");
             new SaveWallet().execute(url);
         }

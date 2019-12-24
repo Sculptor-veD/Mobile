@@ -23,7 +23,8 @@ import ducku.com.moneyhappy.model.Wallet;
 
 public class ManHinhHienThiVi extends AppCompatActivity {
 
-    String userID;
+    String account_id;
+    String token;
     ListView lvWallet;
     ArrayList<Wallet> arrayWallet;
     WalletAdapter adapter;
@@ -42,7 +43,7 @@ public class ManHinhHienThiVi extends AppCompatActivity {
         addControls();
         addEvents();
 
-        new GetWallet().execute("act=loadwallet&iduser="+userID);
+        new GetWallet().execute("act=loadwallet&account_id="+account_id+"&token="+token);
     }
 
     @Override
@@ -59,7 +60,8 @@ public class ManHinhHienThiVi extends AppCompatActivity {
     }
 
     private void addControls() {
-        userID = Preferences.getUser(this);
+        account_id = Preferences.getUser(this);
+        token = Preferences.getToken(this);
 
         lvWallet = (ListView) findViewById(R.id.lvgetwl);
         arrayWallet = new ArrayList<>();

@@ -225,7 +225,9 @@ public class ManHinhTaoNhom extends AppCompatActivity {
             Toast.makeText(this, "Lỗi, Chọn lại danh mục cha..", Toast.LENGTH_SHORT).show();
         }
         else{
-            String url = "act=save_category&name="+name+"&type="+type_id+"&parent_id="+parentID+"&image_name="+imageName+"&iduser="+userId;
+            String account_id = Preferences.getUser(getBaseContext());
+            String token = Preferences.getToken(getBaseContext());
+            String url = "act=save_category&name="+name+"&type="+type_id+"&parent_id="+parentID+"&image_name="+imageName+"&account_id="+userId+"&token="+token;
             url = url.replace(" ", "%20");
             new SaveCategory().execute(url);
         }

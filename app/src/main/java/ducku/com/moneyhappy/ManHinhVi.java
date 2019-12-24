@@ -35,7 +35,8 @@ public class ManHinhVi extends AppCompatActivity {
     ArrayList<Wallet> arrayWallet;
     WalletAdapter adapter;
     Resources res;
-    String userID;
+    String account_id;
+    String token;
 
     @Override
     protected void onRestart() {
@@ -65,12 +66,13 @@ public class ManHinhVi extends AppCompatActivity {
         addControls();
         addEvent();
 
-        new GetWallet().execute("act=loadwallet&iduser="+userID);
+        new GetWallet().execute("act=loadwallet&account_id="+account_id+"&token="+token);
 
     }
 
     private void addControls() {
-        userID = Preferences.getUser(this);
+        account_id = Preferences.getUser(this);
+        token = Preferences.getToken(this);
         lvWallet = (ListView) findViewById(R.id.lvwl);
         arrayWallet = new ArrayList<>();
         res = getResources();

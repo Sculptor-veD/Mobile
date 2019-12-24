@@ -67,8 +67,9 @@ public class LoadWalletActivity extends AppCompatActivity {
         arrayWallet = new ArrayList<>();
         res = getResources();
 
-        String userID = Preferences.getUser(LoadWalletActivity.this);
-        urlAPI = "act=loadwallet&iduser="+userID;
+        String account_id = Preferences.getUser(LoadWalletActivity.this);
+        String token = Preferences.getToken(LoadWalletActivity.this);
+        urlAPI = "act=loadwallet&account_id="+account_id+"&token="+token;
 
     }
 

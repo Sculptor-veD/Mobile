@@ -32,6 +32,7 @@ import java.util.ArrayList;
 
 import ducku.com.moneyhappy.adapter.CategoryAdapter;
 import ducku.com.moneyhappy.model.Category;
+import ducku.com.moneyhappy.model.Preferences;
 
 public class ManHinhHienThiChiTietNhom extends AppCompatActivity {
 
@@ -140,7 +141,9 @@ public class ManHinhHienThiChiTietNhom extends AppCompatActivity {
                 break;
             case R.id.menudelete:
                 //code xử lý khi bấm menu2
-                new DeleteCategory().execute("act=delete_category&id="+id_ct);
+                String account_id = Preferences.getUser(getBaseContext());
+                String token = Preferences.getToken(getBaseContext());
+                new DeleteCategory().execute("act=delete_category&id="+id_ct+"&account_id="+account_id+"&token="+token);
                 break;
             default:break;
         }

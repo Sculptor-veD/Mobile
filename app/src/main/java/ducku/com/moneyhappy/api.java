@@ -1,6 +1,7 @@
 package ducku.com.moneyhappy;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +10,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import ducku.com.moneyhappy.model.Preferences;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 public class api extends AsyncTask<String, String, String> {
@@ -43,7 +48,10 @@ public class api extends AsyncTask<String, String, String> {
                 // Enter URL address where your php file resides
                 if(params[0].isEmpty())
                     params[0] = "";
-                url = new URL("http://vietsever.tk/index.php?"+params[0]);
+
+                String token = Preferences.getToken(getApplicationContext());
+                url = new URL("http://vietsever.tk/index.php?"+"token="+token+"&"+params[0]);
+                Log.e("URL=", url.toString());
 
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block

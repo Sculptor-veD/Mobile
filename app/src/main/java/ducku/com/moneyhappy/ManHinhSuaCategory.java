@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import ducku.com.moneyhappy.model.Preferences;
+
 public class ManHinhSuaCategory extends AppCompatActivity {
     LinearLayout linear;
     int type, parentID, id_ct, hinh;
@@ -191,7 +193,9 @@ public class ManHinhSuaCategory extends AppCompatActivity {
             Toast.makeText(this, "Lỗi, Chọn lại danh mục cha..", Toast.LENGTH_SHORT).show();
         }
         else{
-            String url = "act=update_category&name="+name+"&id="+id+"&parent_id="+parentID+"&image_name="+imageName;
+            String account_id = Preferences.getUser(getBaseContext());
+            String token = Preferences.getToken(getBaseContext());
+            String url = "act=update_category&name="+name+"&id="+id+"&parent_id="+parentID+"&image_name="+imageName+"&account_id="+account_id+"&token="+token;
             url = url.replace(" ", "%20");
             new api().execute(url);
             Toast.makeText(ManHinhSuaCategory.this, "Save Successfully!", Toast.LENGTH_SHORT).show();

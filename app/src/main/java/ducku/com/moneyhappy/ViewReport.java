@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -115,9 +116,11 @@ public class ViewReport extends AppCompatActivity {
         Intent intent = getIntent();
         String startdate = intent.getStringExtra("startdate");
         String enddate = intent.getStringExtra("enddate");
-        String userId = Preferences.getUser(getBaseContext());
+        String account_id = Preferences.getUser(getBaseContext());
+        String token = Preferences.getToken(getBaseContext());
 
-        String url= "act=getreport&account_id="+userId+"&startdate="+startdate+"&enddate="+enddate;
+        String url= "act=getreport&account_id="+account_id+"&startdate="+startdate+"&enddate="+enddate+"&token="+token;
+        Log.e("URL: ", url);
 
         new GetListItemReportChi().execute(url+"&type=0");
         new GetListItemReportThu().execute(url+"&type=1");

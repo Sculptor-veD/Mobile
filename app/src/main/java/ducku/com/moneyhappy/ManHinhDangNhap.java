@@ -323,6 +323,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
                 obj = new JSONObject(s);
                 String accountId = obj.getString("account_id");
                 String checkWallet = obj.getString("wallet");
+                String token = obj.getString("token");
                 if(accountId.equals("false")){
                     //bla bla
                     twMsg.setText("Thong tin khong chinh xac");
@@ -330,6 +331,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
                     //bla bla
                     twMsg.setText("Dang nhap thanh cong");
                     Preferences.saveUser(ManHinhDangNhap.this, accountId);
+                    Preferences.saveToken(ManHinhDangNhap.this, token);
                     Intent intent;
 
                     if(checkWallet.equals("true")) {

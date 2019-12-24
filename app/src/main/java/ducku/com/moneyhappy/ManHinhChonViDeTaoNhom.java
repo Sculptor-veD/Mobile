@@ -26,7 +26,8 @@ public class ManHinhChonViDeTaoNhom extends AppCompatActivity {
     ListView lvWallet;
     ArrayList<Wallet> arrayWallet;
     WalletAdapter adapter;
-    String UserId;
+    String account_id;
+    String token;
     Resources res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class ManHinhChonViDeTaoNhom extends AppCompatActivity {
         addControls();
         addEvents();
 
-        new GetWallet().execute("act=loadwallet&iduser="+UserId);
+        new GetWallet().execute("act=loadwallet&account_id="+account_id+"&token="+token);
     }
 
     private void addEvents() {
@@ -58,7 +59,8 @@ public class ManHinhChonViDeTaoNhom extends AppCompatActivity {
     }
 
     private void addControls() {
-        UserId = Preferences.getUser(this);
+        account_id = Preferences.getUser(this);
+        token = Preferences.getToken(this);
         lvWallet = (ListView) findViewById(R.id.lvgetwl);
         arrayWallet = new ArrayList<>();
         res = getResources();

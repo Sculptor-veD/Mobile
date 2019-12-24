@@ -27,6 +27,8 @@ import ducku.com.moneyhappy.model.Preferences;
 public class ManHinhGiaoDich extends AppCompatActivity {
 
     String iduser;
+    String account_id;
+    String token;
     LinearLayout choiceCategory;
     EditText edtCategory;
     TextView txtIdCategory;
@@ -103,7 +105,7 @@ public class ManHinhGiaoDich extends AppCompatActivity {
                         idWallet=idwl;
                     }
 
-                    String url = "act=save_transaction&wallet_id=" + idWallet + "&category_id=" + idCategory + "&descript=" + descript + "&created=" + created + "&amount=" + monney + "&type=" + typeCategory + "&iduser=" + iduser;
+                    String url = "act=save_transaction&wallet_id=" + idWallet + "&category_id=" + idCategory + "&descript=" + descript + "&created=" + created + "&amount=" + monney + "&type=" + typeCategory + "&account_id=" + account_id+"&token="+token;
                     url = url.replace(" ", "%20");
                     Log.e("URL: ", url);
                     new SaveTransaction().execute(url);
@@ -139,6 +141,8 @@ public class ManHinhGiaoDich extends AppCompatActivity {
 
     private void addControls() {
         iduser = Preferences.getUser(ManHinhGiaoDich.this);
+        account_id = Preferences.getUser(this);
+        token = Preferences.getToken(this);
 
         choiceCategory = findViewById(R.id.choiceCategory);
         edtCategory = findViewById(R.id.edtCategory);
