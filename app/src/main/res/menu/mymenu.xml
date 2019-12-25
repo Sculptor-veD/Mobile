@@ -2,6 +2,10 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/menuhoso"
+        android:title="Hồ sơ "
+        app:showAsAction="collapseActionView" />
+    <item
         android:id="@+id/menunhom"
         android:icon="@drawable/ic_pass"
         android:title="Danh sách nhóm"
@@ -15,16 +19,12 @@
         android:title="Hoá đơn"
         app:showAsAction="collapseActionView" />
     <item
+        android:id="@+id/menu5"
+        android:title="Đổi mật khẩu"
+        app:showAsAction="collapseActionView" />
+    <item
         android:id="@+id/menudangxuat"
         android:title="Đăng xuất"
-        app:showAsAction="collapseActionView" />
-    <item
-        android:id="@+id/menuhoso"
-        android:title="Hồ sơ "
-        app:showAsAction="collapseActionView" />
-    <item
-        android:id="@+id/menu5"
-        android:title="..."
         app:showAsAction="collapseActionView" />
 
 </menu>

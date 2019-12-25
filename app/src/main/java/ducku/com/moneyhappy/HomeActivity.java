@@ -153,6 +153,10 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent3= new Intent(HomeActivity.this,ManHinhHoSo.class);
                 startActivity(intent3);
                 break;
+            case R.id.menu5:
+                Intent intent6 = new Intent(HomeActivity.this, ManHinhDangKy.class);
+                intent6.putExtra("action","ForGotPassword");
+                startActivity(intent6);
             default:break;
         }
 

@@ -227,6 +227,10 @@ public class ManHinhNhom extends AppCompatActivity {
                 Intent intent1= new Intent(ManHinhNhom.this,ManHinhDangNhap.class);
                 startActivity(intent1);
                 break;
+            case R.id.menu5:
+                Intent intent6 = new Intent(ManHinhNhom.this, ManHinhDangKy.class);
+                intent6.putExtra("action","ForGotPassword");
+                startActivity(intent6);
             default:break;
         }
 
