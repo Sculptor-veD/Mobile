@@ -297,6 +297,8 @@ public class ManHinhDangNhap extends AppCompatActivity {
             try {
                 jsonObject = new JSONObject(s);
                 String jsonid  = jsonObject.getString("user_id");
+                String token   = jsonObject.getString("token");
+
                 if(jsonid.equals("0"))
                 {
                     txtPassword.setText("***");
@@ -305,6 +307,7 @@ public class ManHinhDangNhap extends AppCompatActivity {
                 else{
                     txtSDT.setText("Login Success with ID" + jsonid);
                     Preferences.saveUser(ManHinhDangNhap.this, jsonid);
+                    Preferences.saveToken(ManHinhDangNhap.this, token);
                     Intent intent = new Intent(ManHinhDangNhap.this, HomeActivity.class);
                     startActivity(intent);
 
